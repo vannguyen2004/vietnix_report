@@ -28,7 +28,7 @@ PFX
 
 - PFX là một loại tệp nhị phân chứa chứng chỉ (certificate), chứng chỉ trung gian (intermediate certificates), và khóa riêng tư (private key) trong một tệp duy nhất. PFX thường được dùng để cài đặt SSL trên IIS.
 
-- Để chuyển đổi chứng chỉ, khóa riêng tư, v.v. sang định dạng PFX, bạn có thể sử dụng công cụ tại: SSLShopper SSL Converter.
+- Để chuyển đổi chứng chỉ, khóa riêng tư, v.v. sang định dạng PFX, bạn có thể sử dụng công cụ tại: [SSLShopper SSL Converter.](https://www.sslshopper.com/ssl-converter.html)
 
 ## Domain
 Domain (tên miền) là địa chỉ website trên internet, giúp người dùng truy cập website thay vì phải ghi nhớ địa chỉ IP.
