@@ -208,24 +208,7 @@ Kiểm tra dung lượng đĩa:
 Lưu ý: Phân vùng / là phân vùng gốc của hệ thống.
 
 
-### Symbolic Links
-Tạo liên kết tượng trưng (chỉ đến tệp tin hoặc thư mục; hỏng nếu tệp tin gốc bị xóa):
-```ln -s /path/to/original /path/to/symlink```
-
-Hard Links
-Tạo liên kết cứng (liên kết trực tiếp đến inode của tệp tin; vẫn truy cập được nếu tệp tin gốc bị xóa):
-```ln /path/to/original /path/to/hardlink```
-
-### Ls
-Liệt kê tệp tin và thư mục:
-```ls -l```
-
-Liệt kê tệp tin ẩn:
-``ls -a```
-
-### Ps
-Xem tiến trình hệ thống:
-```ps```
+### Symboliaux```
 
 Kết thúc tiến trình bằng PID:
 ```kill PID```
