@@ -225,9 +225,9 @@ Tháo đĩa:
 
 Symbolic Link: Là một file đặc biệt chứa đường dẫn tới file hoặc thư mục khác, link gốc hỏng thì Sym Link cũng hỏng theo.    
 Hard Link: là một liên kết trực tiếp tới inode của file gốc, file gốc bị xóa thì vẫn có thể truy cập cho link tới inode.  
-VDL 
-- Sym Link: thư mục domain đầu tiên của một user trên directadmin có một sym link tới public_html của account đó
-- 
+VD: (lệnh ln mặc đinh không có thêm option thì sẽ tạo hard link)
+- Sym Link: ln -s original.txt symlink.txt
+- Hard Link: ln original.txt hardlink.txt
 
 ### Df
 Kiểm tra dung lượng đĩa:
