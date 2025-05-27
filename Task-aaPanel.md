@@ -151,15 +151,17 @@ Sau khi upload và kích hoạt
 # Cách sử dụng của Plugin All-in-One WP Migration and Backup
 Là một công cụ rất phổ biến để sao lưu (backup) và di chuyển (migration) website WordPress một cách dễ dàng
 Cách hoat động: Plugin sẽ export dữ liệu hiện tại để import vào trang wordpress mới
-1. Cách Xuất Website (Export)
-- Vào All-in-One WP Migration > Export.
-- Tại mục Export To, chọn:
-- File (tạo file tải về).
-- Sau khi export xong, plugin sẽ cung cấp link tải về file .wpress
-2. Cách Nhập Website (Import)
+1. Cách Xuất Website 
+- Vào All-in-One WP Migration > Xuất.
+- Chọn xuất ra file sao đó tải về :
+![image](https://github.com/user-attachments/assets/ddf629a1-e9ca-4587-a774-20834de8494e)
+![image](https://github.com/user-attachments/assets/2cc7f7d1-656d-4220-bc43-977de3d4251f)
+
+2. Cách Nhập Website 
 - Cài WordPress sạch trên site mới, sau đó cài plugin All-in-One WP Migration.
-- Vào All-in-One WP Migration > Import.
-- Chọn file .wpress đã backup từ site cũ.
+- Vào All-in-One WP Migration > Nhập.
+![image](https://github.com/user-attachments/assets/50618038-eaa2-4ceb-9b3d-bbda2aa36709)
+
 - Sau khi hoàn tất, plugin yêu cầu bạn đăng nhập lại bằng thông tin từ website cũ (vì user admin cũng đã được import theo).
 # Tìm hiểu về plugin WP-Optimize – Cache và Litespeed Cache
 Trước tiên ta tìm hiểu 2 plugin này là gì 
