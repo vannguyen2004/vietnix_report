@@ -164,7 +164,7 @@ traceroute destination
 Phân tích kết quả để xác định các nút trung gian và độ trễ.
 
 ### Netstat
-Hiển thị các socket đang lắng nghe:
+Hiển thị các socket đang lắng nghe (lệnh hay dùng):
 ```netstat -ntlp```
 
 Hiển thị mà không phân giải hostname:
