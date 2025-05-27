@@ -84,7 +84,7 @@ Setup SSL cho website
 
 ![image](https://github.com/user-attachments/assets/537b0e33-b1a7-4e22-afe8-205f44b8dbdb)
 
-## Setup Web với Lavarel
+# Setup Web với Lavarel
  - Cài đặt Laravel với Composer Create-Protect: ```composer create-project --prefer-dist laravel/laravel weblaravel```  
  - Vào thư mục **weblaravel**    ```cd weblaravel```  
  - Khởi chạy laravel: ```php artisan serve```  
