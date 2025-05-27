@@ -88,6 +88,7 @@ Setup SSL cho website
 ![image](https://github.com/user-attachments/assets/d2b1386c-e8d0-4c02-bccd-36fffe3d0f22)
 
 ## Setup Web với Lavarel
+1. Truy cập vào VPS 
 1. Tải 2 software:
    - one-click deployment 1.3
    - PHP-7.4
