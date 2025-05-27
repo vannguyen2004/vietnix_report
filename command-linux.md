@@ -1,4 +1,16 @@
-### Linux Command 
+# Linux Command 
+
+### Ping
+
+``` ping vietnix.vn```
+
+![image](https://github.com/user-attachments/assets/2d30056b-f230-4986-ba05-afe2654b7220)
+
+ttl: *time to live*: thời gian dùng để kiểm sóat vòng đời của một gói tin. Trên linux ttl của gói IPv4 mặc định là 64 và sẽ bị giamr đi khi qua 1 hop/router. ttl trả về càng cao chứng tỏ số lượng router chuyển tiếp gói tin càng ít.  
+
+time: là độ trể của gói tin khi đi từ nguồn đến đích và trở lại. Độ trể càng thấp chứng tỏ tốc độ đi đến đích càng nhanh
+
+
 ### SSH Command 
 Kết nối sử dụng mật khẩu:
 ```ssh user_name@ip_or_domain```
@@ -58,6 +70,12 @@ Hiển thị cập nhật theo thời gian thực:
 ### Sed
 Tìm và thay thế một chuỗi trong tệp tin:
 ```sed -i 's/old_string/new_string/g' file.txt```
+
+### Traceroute
+Lệnh traceroute dùng để xem thông tin quảng đường mà gói tin đi đến đích 
+
+![image](https://github.com/user-attachments/assets/247842c5-e6b7-4481-afee-a0d454dfa3cb)
+
 
 ### Cp
 Sao chép một tệp tin:
@@ -173,7 +191,7 @@ Truy vấn DNS cho bản ghi NS:
 ```dig vietnix.vn NS```
 
 Truy vấn với máy chủ DNS tùy chỉnh:
-```dig vietnix.vn NS @ip_resolver```
+```dig vietnix.vn Type_record @ip_resolver```
 
 
 ### Tar
@@ -196,10 +214,18 @@ Liệt kê các đĩa khả dụng:
 ```lsblk```
 
 Lắp đĩa vào /mnt/test:
-mount /dev/sdb1 /mnt/test
+```mount /dev/sdb1 /mnt/test```
 
 Tháo đĩa:
-umount /mnt/test
+```umount /mnt/test```
+
+### Symbolic Links, Hard Links command
+
+Symbolic Link: Là một file đặc biệt chứa đường dẫn tới file hoặc thư mục khác, link gốc hỏng thì Sym Link cũng hỏng theo.    
+Hard Link: là một liên kết trực tiếp tới inode của file gốc, file gốc bị xóa thì vẫn có thể truy cập cho link tới inode.  
+VDL 
+- Sym Link: thư mục domain đầu tiên của một user trên directadmin có một sym link tới public_html của account đó
+- 
 
 ### Df
 Kiểm tra dung lượng đĩa:
@@ -213,12 +239,39 @@ Lưu ý: Phân vùng / là phân vùng gốc của hệ thống.
 Kết thúc tiến trình bằng PID:
 ```kill PID```
 
+### Free
+Kiểm tra dung lượng bộ nhớ:
+free -h
+
+![image](https://github.com/user-attachments/assets/cc98a8ed-86c8-4edd-b719-02a0d4e9d45d)
+
+- Total: Tổng RAM vật lý. 
+- used: Tổng số RAM đã sử dụng
+- Free: Tổng số RAM trống
+- Share: Số RAM được share cho các tiến trình dùng chung
+- Buff/Cache: Số RAM cache I/O được đọc từ đĩa
+- Avaliable: Số RAM tối đa mà kernel có thể lấy để bắt đầu process mới
+- swap: RAM ảo là RAM được dùng khi phần trăm  RAM vật lí sử dụng chạm đến swappiness. Tránh tình trang kill tiến trinh không cần thiết khi hệ thống hết RAM vật lí (em thấy máy em nhiều RAM nên chưa có thêm vào :> )
+
 ### Top
 Theo dõi tài nguyên hệ thống:
 ```top```
 
-Các chỉ số chính: tải trung bình, us (người dùng), sy (hệ thống), ni (nice), id (nhàn rỗi), wa (chờ), hi (ngắt phần cứng), si (ngắt phần mềm), st (thời gian bị đánh cắp), zombie, và tiến trình ngủ.
+Là lệnh xem các thông tin của hệ thống hiện tại: 
 
-Free
-Kiểm tra dung lượng bộ nhớ:
-free -h
+Các chỉ số chính: tải trung bình, us (người dùng), sy (hệ thống), ni (nice), id (nhàn rỗi), wa (chờ), hi (ngắt phần cứng), si (ngắt phần mềm), st (thời gian bị đánh cắp), zombie, và tiến trình ngủ. 
+
+![image](https://github.com/user-attachments/assets/ac484b99-fa89-4479-9c66-c99e676ff0cb)
+
+- Load Average: là chỉ số dùng để đo lường mức tải trung bình của hệ thống trong ba khoảng thời gian: 1, 5 và 15 phút.
+- Sleeping: tiến trình đang ngủ
+- Stopped: Tiến trình bị dừng chờ được kích hoạt 
+- Zombie: Tiến trình đã dừng nhưng chưa được dọn dẹp
+- us: Tỷ lệ phần trăm CPU đang được sử dụng bởi các tiến trình người dùng.
+- sy: Tỷ lệ phần trăm CPU đang được sử dụng bởi các tiến trình hệ thống.
+- ni: Tỷ lệ phần trăm CPU dành cho các tiến trình có mức độ ưu tiên.
+- id: Tỷ lệ CPU ở trạng thái không hoạt động.
+- wa: Tỷ lệ phần trăm CPU đang đợi I/O.
+- hi: Tỷ lệ phần trăm CPU dành thời gian ngắt phần cứng.
+- si: Tỷ lệ phần trăm CPU dành thời gian ngắt phần mềm.
+- st: Tỷ lệ phần trăm CPU bị "đánh cắp" bởi máy ảo (stolen).
