@@ -94,7 +94,8 @@ Setup SSL cho website
  ![image](https://github.com/user-attachments/assets/1c593cac-090e-4264-adb1-6858cf1a1c7f)
 ![image](https://github.com/user-attachments/assets/9e7cfe10-60d5-45c0-9fe3-cf102aa48a56)
 ![image](https://github.com/user-attachments/assets/2c9f156e-6c3c-453a-8ff2-14f859935056)
-![image](https://github.com/user-attachments/assets/bbc03a8e-45ad-40da-b495-3a98a1c0398d)
+![image](https://github.com/user-attachments/assets/15251303-5671-4a54-8790-3daaf8ff6a10)
+
 
 
 # Cài Plugin
