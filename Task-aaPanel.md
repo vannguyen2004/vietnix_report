@@ -107,34 +107,7 @@ Ta truy cập vào domain: **wp.nguyen.vietnix.tech** sau đó setup các thông
 
 ---------------------------------------------------------------------------------------
 
-1. Install docker
-![image](https://github.com/user-attachments/assets/d8962926-1143-40bf-b429-d8b4d36b06e3)
 
-
-
-![image](https://github.com/user-attachments/assets/e6b6da55-44c7-4257-8563-b2e993e32c32)
-
-![image](https://github.com/user-attachments/assets/9323a5e1-3999-470c-9c21-72ca0bcb5dbd)
-
-![image](https://github.com/user-attachments/assets/34bfcf94-7056-4243-916a-43fbcb9d8817)
-
-
-
-![image](https://github.com/user-attachments/assets/5cb9b4d5-1bf8-4ffe-86a4-b78339568d8b)
-
-![image](https://github.com/user-attachments/assets/a7621d36-1752-461c-9e41-d9c0216f4793)
-
-![image](https://github.com/user-attachments/assets/0eb4f649-f06d-4d6e-96d2-662735afade1)
-
-
-![image](https://github.com/user-attachments/assets/2d7e37e6-a9e9-42ba-a2c1-d116cc7c169b)
-
-![image](https://github.com/user-attachments/assets/d71d60f4-b84c-4a9f-b897-c4ca1bf316d6)
-
-
-![image](https://github.com/user-attachments/assets/34bfcf94-7056-4243-916a-43fbcb9d8817)
-
-![image](https://github.com/user-attachments/assets/51653412-6326-4c75-a600-b548b8563657)
 
 
 
