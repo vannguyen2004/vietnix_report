@@ -16,6 +16,12 @@ Ví dụ lệnh tạo CSR bằng OpenSSL:
 
 ``` openssl req -new -newkey rsa:2048 -nodes -keyout tech.training.vietnix.tech -out ech.training.vietnix.tech.csr``` 
 
+
+
+![image](https://github.com/user-attachments/assets/a8c70ffb-391e-4d65-9e3f-85f58ed6e0ba)
+
+
+
 PEM (Privacy Enhanced Mail)
 
 - PEM là định dạng tệp được sử dụng rộng rãi để lưu trữ và truyền tải chứng chỉ số, khóa mật mã, và dữ liệu bảo mật khác. Dữ liệu được mã hóa bằng Base64.
@@ -59,7 +65,7 @@ Subdomain (tên miền con) là một phần của tên miền chính. Ví dụ:
 Virtual host cho phép nhiều website hoạt động trên cùng một máy chủ hoặc địa chỉ IP, giúp tối ưu tài nguyên và giảm chi phí.
 
 ## Mail Server
-Mail Server là máy chủ dùng để gửi và nhận email bao gồm các giao thức smtp, imap, pop3 
+Mail Server là máy chủ dùng để gửi và nhận email bao gồm các giao thức smtp, imap, pop3   
 DNS Records cho Email
 - MX (Mail Exchange): Bản ghi DNS giúp điều hướng email đến đúng máy chủ nhận thư.
 - DKIM: Bản ghi TXT cung cấp xác thực và độ tin cậy cho email gửi từ tên miền, sử dụng chữ ký số để tránh email giả mạo.
