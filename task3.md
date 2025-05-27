@@ -36,7 +36,7 @@ Sau khi đăng nhập hoàn tất
 
 # Cài đặt wordpress trên domain: wp.nguyen.vietnix.tech
 
-### Hướng dẫn này sẽ hướng dẫn cài Wordpress bằng tay từ đầu đến cuối, hoặc có thể dùng one-click deployment  trên aaPanel để cài tự động
+### Bài viết này cài Wordpress thủ công từ đầu đến cuối, hoặc có thể dùng one-click deployment  trên aaPanel để cài tự động
 
 ### Cài đặt web server, (ftp), php và mysql 
 Cài đặt webserver. Ở đây mình chọn Apache 
