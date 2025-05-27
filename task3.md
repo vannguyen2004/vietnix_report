@@ -98,7 +98,7 @@ Setup SSL cho website
 ![image](https://github.com/user-attachments/assets/2c9f156e-6c3c-453a-8ff2-14f859935056)
 ![image](https://github.com/user-attachments/assets/a95f64d6-02c6-474d-b8ff-c4f4759e482d)
 
-### Cài Plugin
+# Cài Plugin
 
 1. Plugin All-in-One
 ![image](https://github.com/user-attachments/assets/e36429ee-d818-4aa8-8ce4-cda2e670395f)
