@@ -38,7 +38,7 @@ PFX
 
 ## Domain
 Domain (tên miền) là địa chỉ website trên internet, giúp người dùng truy cập website thay vì phải ghi nhớ địa chỉ IP.
-Các trạng thái của tên miền:
+Các trạng thái của tên miền tại đơn vị cấp phát:
 - Active: Tên miền đang hoạt động.
 - AddPeriod: Trạng thái tên miền mới đăng ký hoặc gia hạn.
 - AutoRenewPeriod: Tên miền ở trạng thái tự động gia hạn.
@@ -56,7 +56,12 @@ Các trạng thái của tên miền:
 - ServerRenewProhibited / ServerTransferProhibited: Tên miền không được phép chuyển đổi sang nhà đăng ký khác.
 - ServerUpdateProhibited: Tên miền không được phép cập nhật.
 - TransferPeriod: Tên miền đang trong trạng thái chuyển nhà đăng ký.
-
+Các trạng thái của tên miền tại nhà đăng kí tên miền:
+- ClientUpdateProhibited: à trạng thái cấm cập nhật tên miền. Trạng thái này được đặt bởi nhà đăng ký tên miền để ngăn chặn việc cập nhật tên miền trái phép
+- ClientTransferProhibited: Trạng thái này được đặt bởi nhà đăng ký tên miền để ngăn chặn việc chuyển nhượng tên miền trái phép
+- ClientRenewProhibited: là trạng thái không cho phép gia hạn đăng ký cho tên miền. Trạng thái này được đặt khi tên miền có dấu hiệu bị chiếm quyền điều khiển hoặc đang trong trạng thái redemptionPeriod.
+- ClientHold: ClientHold là trạng thái tạm ngừng hoạt động của tên miền
+- ClientDeleteProhibited: là trạng thái ngăn không cho tên miền bị xóa. Trạng thái này chỉ xuất hiện khi có tranh chấp về tên miền, do bạn yêu cầu hoặc khi tên miền đang trong trạng thái redemptionPeriod
 **Subdomain**
 
 Subdomain (tên miền con) là một phần của tên miền chính. Ví dụ: Với tên miền chính nguyenhv.id.vn, bạn có thể tạo subdomain như sub.nguyenhv.id.vn.
