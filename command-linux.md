@@ -101,6 +101,8 @@ Trích xuất phạm vi ký tự:
 ### Chmod
 Đặt quyền (chủ sở hữu: đầy đủ, nhóm: đọc/ghi, người khác: đọc):
 ```chmod 764 file.txt```
+Kiểu chữ: 
+``` chmod u=rwx,g=rw,o=r file.txt```
 
 ### Chown
 Thay đổi chủ sở hữu và nhóm:
