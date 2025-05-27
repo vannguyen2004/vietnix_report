@@ -2,7 +2,7 @@
 
 Truy cập vào website chính thức của aaPanel để lấy script cài đặt: https://www.aapanel.com/new/download.html  
 
-Có 2 phiên bản Pro và Community. Ta copy script của bản Community nhé  
+Có 2 phiên bản Pro và Free. Ta copy script của bản Free nhé  
 
 ![image](https://github.com/user-attachments/assets/fb5ff62c-e30f-4c68-b008-8508c0d1df51)
 
