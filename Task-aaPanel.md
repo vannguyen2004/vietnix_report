@@ -85,7 +85,30 @@ Setup SSL cho website
 
 ![image](https://github.com/user-attachments/assets/d2b1386c-e8d0-4c02-bccd-36fffe3d0f22)
 
-### Đăng nhập 
+## Setup Web với Lavarel
+1. Tải 2 software:
+   - one-click deployment 1.3
+   - PHP-7.4
+2. Tiến hành tạo web
+- Ấn setting  one-click deployment 1.3
+![image](https://github.com/user-attachments/assets/703d92c6-0328-4861-a69f-d713deb93924)
+- Chọn lavarel7x
+![image](https://github.com/user-attachments/assets/defc37e0-d9cc-4e1f-9e07-1ab5dd390cc5)
+
+- Ta điền các thông số domain và thông tin database sao đó ấn submit
+![image](https://github.com/user-attachments/assets/64cdbe7e-c3db-4c15-921b-8415ddc513bc)
+- Đang trong quá trình cài đặt
+![image](https://github.com/user-attachments/assets/6014db32-f336-4a95-8355-43c789fb22f8)
+![image](https://github.com/user-attachments/assets/2bd72cbf-a655-43bc-a677-cf41e9f39d1a)
+
+- Cài SSL như lúc cài SSL trên wordpress
+![image](https://github.com/user-attachments/assets/57e654ad-597f-4a69-9d8b-eb1eb2b983e9)
+
+![image](https://github.com/user-attachments/assets/a806e675-662e-42ac-85cf-7948b3d95858)
+
+
+
+# Cài plugin wordpress
 Ta truy cập vào domain: **wp.nguyen.vietnix.tech** sau đó setup các thông tin. Database  sẽ là thông số lúc tạo add site trước đó
 
 ![image](https://github.com/user-attachments/assets/5cb9b4d5-1bf8-4ffe-86a4-b78339568d8b)
