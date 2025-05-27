@@ -117,7 +117,7 @@ Sau khi upload và kích hoạt
 ![image](https://github.com/user-attachments/assets/b420c228-007a-4fe6-a8e9-e138f15df4cf)
 
 
-### Tìm hiểu về plugin WP-Optimize – Cache và Litespeed Cache
+# Tìm hiểu về plugin WP-Optimize – Cache và Litespeed Cache
 Trước tiên ta tìm hiểu 2 plugin này là gì 
 
 - WP-Optimize là plugin tối ưu hóa hiệu suất và cơ sở dữ liệu cho WordPress. Đây là một công cụ tất cả trong một với một bộ tính năng giải quyết các khía cạnh khác nhau của việc tối ưu hóa trang web, chủ yếu tập trung vào bộ nhớ đệm, dọn dẹp cơ sở dữ liệu và nén hình ảnh
