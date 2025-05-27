@@ -241,6 +241,7 @@ Xem tất cả các tiến trình trên hệ thống
 ```ps aux```
 Kết thúc tiến trình bằng PID:
 ```kill PID```
+```kill -9 PID```
 
 ### Free
 Kiểm tra dung lượng bộ nhớ:
