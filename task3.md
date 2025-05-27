@@ -23,7 +23,7 @@ Sau khi hoàn tất sẽ có thông tin đăng nhập vào Panel. Ta nên lưu l
 
 ![image](https://github.com/user-attachments/assets/c5ba58e7-1fbe-424d-b9c5-cf1ef926864a)
 
-Sau đó ta truy cập là địa chỉ như trên hình đầu tiên nhé
+Sau đó ta truy cập là địa chỉ 
 **https://14.225.254.186:14399/e2e7ac4c**
 Ta nhập thông tin đăng nhập vào sau đó nhấn login
 
