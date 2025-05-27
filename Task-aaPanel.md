@@ -38,8 +38,8 @@ Sau khi đăng nhập hoàn tất
 
 ### Hướng dẫn này sẽ hướng dẫn cài Wordpress bằng tay từ đầu đến cuối, hoặc có thể dùng one-click deployment  trên aaPanel để cài tự động
 
-### Cài đăng web server, ftp và mysql 
-1. Cài đặt website. Ở đây mình chọn Apache 
+### Cài đặt web server, (ftp), php và mysql 
+Cài đặt webserver. Ở đây mình chọn Apache 
 ![image](https://github.com/user-attachments/assets/1ebaa558-8c96-466d-a071-9a8d1a25a703)
 
 ![image](https://github.com/user-attachments/assets/b5baa1f4-b269-4a24-8a26-bacbf3b7fb92)
@@ -69,7 +69,7 @@ Ta chọn add site và điền các thông tin cần thiết như Domain, tài k
 ![image](https://github.com/user-attachments/assets/51653412-6326-4c75-a600-b548b8563657)
 
 
-Sau khi cài đặt xong ta ấn vào phần document root của website sau đó up load source wordpres lên sau đó xả nhén nhé
+Sau khi cài đặt xong ta ấn vào phần document root của website sau đó up load source wordpres lên sau đó xả nhén
 ![image](https://github.com/user-attachments/assets/d75f29b9-accd-49f4-baab-6b355a651f0a)
 
 ![image](https://github.com/user-attachments/assets/a2d53b66-ba65-40c3-8da5-3e3a3fb8944e)
@@ -98,21 +98,7 @@ Setup SSL cho website
 ![image](https://github.com/user-attachments/assets/2c9f156e-6c3c-453a-8ff2-14f859935056)
 ![image](https://github.com/user-attachments/assets/a95f64d6-02c6-474d-b8ff-c4f4759e482d)
 
-
-# Cài plugin wordpress
-Ta truy cập vào domain: **wp.nguyen.vietnix.tech** sau đó setup các thông tin. Database  sẽ là thông số lúc tạo add site trước đó
-
-![image](https://github.com/user-attachments/assets/5cb9b4d5-1bf8-4ffe-86a4-b78339568d8b)
-
-![image](https://github.com/user-attachments/assets/7f964c65-1c5b-4af9-854a-7525d03f394c)
-
-![image](https://github.com/user-attachments/assets/d056e241-9460-4328-aa98-7493b02653c9)
-
-![image](https://github.com/user-attachments/assets/5ebd2e7a-ef4b-4e77-bf85-53efcb653ce2)
-
-![image](https://github.com/user-attachments/assets/537b0e33-b1a7-4e22-afe8-205f44b8dbdb)
-
-### Plugin
+### Cài Plugin
 
 1. Plugin All-in-One
 ![image](https://github.com/user-attachments/assets/e36429ee-d818-4aa8-8ce4-cda2e670395f)
@@ -150,11 +136,11 @@ Trước tiên ta tìm hiểu 2 plugin này là gì
 - WP-Optimize là plugin tối ưu hóa hiệu suất và cơ sở dữ liệu cho WordPress. Đây là một công cụ tất cả trong một với một bộ tính năng giải quyết các khía cạnh khác nhau của việc tối ưu hóa trang web, chủ yếu tập trung vào bộ nhớ đệm, dọn dẹp cơ sở dữ liệu và nén hình ảnh
 - Litespeed Cache: là một plugin WordPress giúp tăng tốc trang web bằng cách sử dụng bộ nhớ đệm cấp máy chủ, do đó cải thiện hiệu suất và tốc độ tải trang. Nó là được những việc như: Lưu trữ đệm, Tăng tốc trang web, Tối ưu hóa hình ảnh,...
 
-Về mục đính: Cả hai plugin này đều được dùng để tăng tốc độc website nhưng hoàn cảnh sử dụng có thể sẽ khác nhau
-- WP-Optimize – Cache: Được sử dụng tất cả các website wordpress. Không 
+Về mục đính: Cả hai plugin này đều được dùng để tăng tốc độc website bằng các cache lại nội dung được truy vấn nhưng hoàn cảnh sử dụng có thể sẽ khác nhau
+- WP-Optimize – Cache: Được sử dụng tất cả các website wordpress. Không phụ thụộc vào webserver mà wordpress chạy trên đó 
 - Litespeed Cache: Được sử dụng trên website wordpress chạy trên nền tảng webserver openlitespeed hoặc  LiteSpeed Web Server
 
-So về tốc độ Litespeed Cache sẽ có tốc độ tốt hơn khi dữ liệu sẽ được cache trên webserver nghĩa là khi có yêu cầu gửi đến webserver thì sẽ dùng cache luôn không cần chuyển lưu lượng đến dữ liệu người dùng lấy cache
+So về tốc độ Litespeed Cache sẽ có tốc độ tốt hơn khi dữ liệu sẽ được cache trên webserver nghĩa là khi có yêu cầu gửi đến webserver thì sẽ dùng cache luôn không cần chuyển lưu lượng đến wordpres để lấy cache. Tuy nhiên plugin wordpress lại linh hoạt hơn cho người dùng bởi không phụ thuộc vào lại webserver. Ngoài ra cache sẽ liên quan đến nhiều công nghệ khác
 
 
 
