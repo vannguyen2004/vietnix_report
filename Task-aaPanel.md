@@ -90,15 +90,45 @@ Ta truy cập vào domain: **wp.nguyen.vietnix.tech** sau đó setup các thông
 
 ![image](https://github.com/user-attachments/assets/5cb9b4d5-1bf8-4ffe-86a4-b78339568d8b)
 
-
 ![image](https://github.com/user-attachments/assets/7f964c65-1c5b-4af9-854a-7525d03f394c)
 
 ![image](https://github.com/user-attachments/assets/d056e241-9460-4328-aa98-7493b02653c9)
 
 ![image](https://github.com/user-attachments/assets/5ebd2e7a-ef4b-4e77-bf85-53efcb653ce2)
 
-
 ![image](https://github.com/user-attachments/assets/537b0e33-b1a7-4e22-afe8-205f44b8dbdb)
+
+### Plugin
+
+1. Plugin All-in-One
+![image](https://github.com/user-attachments/assets/e36429ee-d818-4aa8-8ce4-cda2e670395f)
+
+2. Cài đặt toàn bộ plugin có trong trang portal
+
+Tiến hành upload các plugin 
+![image](https://github.com/user-attachments/assets/7fc4cb27-4167-476e-879d-8d3f6e074c79)
+
+![image](https://github.com/user-attachments/assets/a01a3c4d-d12d-4ab8-9c34-25e80ec45b62)
+
+Sau khi upload và kích hoạt
+
+![image](https://github.com/user-attachments/assets/98759b84-b3db-4f14-97e8-885363a6f094)
+![image](https://github.com/user-attachments/assets/0b1f522c-6609-4a7d-9f4b-c11d96155cac)
+![image](https://github.com/user-attachments/assets/b420c228-007a-4fe6-a8e9-e138f15df4cf)
+
+
+### Tìm hiểu về plugin WP-Optimize – Cache và Litespeed Cache
+Trước tiên ta tìm hiểu 2 plugin này là gì 
+
+- WP-Optimize là plugin tối ưu hóa hiệu suất và cơ sở dữ liệu cho WordPress. Đây là một công cụ tất cả trong một với một bộ tính năng giải quyết các khía cạnh khác nhau của việc tối ưu hóa trang web, chủ yếu tập trung vào bộ nhớ đệm, dọn dẹp cơ sở dữ liệu và nén hình ảnh
+- Litespeed Cache: là một plugin WordPress giúp tăng tốc trang web bằng cách sử dụng bộ nhớ đệm cấp máy chủ, do đó cải thiện hiệu suất và tốc độ tải trang. Nó là được những việc như: Lưu trữ đệm, Tăng tốc trang web, Tối ưu hóa hình ảnh,...
+
+Về mục đính: Cả hai plugin này đều được dùng để tăng tốc độc website nhưng hoàn cảnh sử dụng có thể sẽ khác nhau
+- WP-Optimize – Cache: Được sử dụng tất cả các website wordpress. Không 
+- Litespeed Cache: Được sử dụng trên website wordpress chạy trên nền tảng webserver openlitespeed hoặc  LiteSpeed Web Server
+
+So về tốc độ Litespeed Cache sẽ có tốc độ tốt hơn khi dữ liệu sẽ được cache trên webserver nghĩa là khi có yêu cầu gửi đến webserver thì sẽ dùng cache luôn không cần chuyển lưu lượng đến website người dùng lấy cache
+
 
 
 
