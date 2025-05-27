@@ -89,13 +89,13 @@ Di chuyển tệp tin hoặc thư mục:
 ```mv /source /destination```
 
 ### Cut
-Trích xuất ký tự cụ thể:
+Trích xuất ký tự thứ 3: 
 ``` cut -c3 <<< "abcd"```
 
-Trích xuất từ ký tự cụ thể trở đi:
+Trích xuất từ ký tự thứ 4 trở đi:
 ```cut -c4- <<< "abcdxyz"```
 
-Trích xuất phạm vi ký tự:
+Trích xuất phạm vi ký tự từ 3 trở về trước:
 ```cut -c1-3 <<< "abcdxyz"```
 
 ### Chmod
