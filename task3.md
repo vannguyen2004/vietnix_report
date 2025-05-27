@@ -85,7 +85,7 @@ Setup SSL cho website
 # Setup Web với Lavarel
  - Cài đặt Laravel với Composer Create-Protect: ```composer create-project --prefer-dist laravel/laravel weblaravel```  
  - Vào thư mục **weblaravel**    ```cd weblaravel```  
- - Khởi chạy laravel: ```php artisan serve```  
+ - Khởi chạy laravel: ```nohup php artisan serve > laravel.log 2>&1 &```   
  - Cấu hình reverse proxy xuống 127.0.0.1:8000
  
  ![image](https://github.com/user-attachments/assets/1f582174-f297-4102-828b-896698a2a315)
