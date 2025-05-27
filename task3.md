@@ -77,12 +77,10 @@ Sau khi cài đặt xong ta ấn vào phần document root của website sau đ�
 
 Setup SSL cho website
 
-![image](https://github.com/user-attachments/assets/3ffdb43d-d5ab-4516-bde0-262912fa621c)
-![image](https://github.com/user-attachments/assets/fdf554b9-f747-4d79-b959-981be5b05b6b)
+![image](https://github.com/user-attachments/assets/91c03115-97d5-4eba-aa9b-0f4544c9e0fd)
 
-![image](https://github.com/user-attachments/assets/d2b1386c-e8d0-4c02-bccd-36fffe3d0f22)
+![image](https://github.com/user-attachments/assets/8c3c4f2a-0fe3-4620-86b5-56cce813ee20)
 
-![image](https://github.com/user-attachments/assets/537b0e33-b1a7-4e22-afe8-205f44b8dbdb)
 
 # Setup Web với Lavarel
  - Cài đặt Laravel với Composer Create-Protect: ```composer create-project --prefer-dist laravel/laravel weblaravel```  
