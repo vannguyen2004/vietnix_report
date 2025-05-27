@@ -127,7 +127,7 @@ Về mục đính: Cả hai plugin này đều được dùng để tăng tốc 
 - WP-Optimize – Cache: Được sử dụng tất cả các website wordpress. Không 
 - Litespeed Cache: Được sử dụng trên website wordpress chạy trên nền tảng webserver openlitespeed hoặc  LiteSpeed Web Server
 
-So về tốc độ Litespeed Cache sẽ có tốc độ tốt hơn khi dữ liệu sẽ được cache trên webserver nghĩa là khi có yêu cầu gửi đến webserver thì sẽ dùng cache luôn không cần chuyển lưu lượng đến website người dùng lấy cache
+So về tốc độ Litespeed Cache sẽ có tốc độ tốt hơn khi dữ liệu sẽ được cache trên webserver nghĩa là khi có yêu cầu gửi đến webserver thì sẽ dùng cache luôn không cần chuyển lưu lượng đến dữ liệu người dùng lấy cache
 
 
 
