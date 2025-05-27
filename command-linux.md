@@ -22,20 +22,20 @@ Kết nối sử dụng cổng tùy chỉnh:
 ```ssh -p PORT user_name@ip_or_domain```
 
 ### SCP
+(Copy từ server về nếu ngược lai ta thay đổi source des)   
 Sao chép một tệp tin duy nhất:
-```scp /path/file username@remote_host:/path/to/remote/destination```
+```scp /path/file username@remote_host:/path_remote  /destination```
 
 Sao chép một thư mục:
-```scp -r /path/folder/ username@remote_host:/path/to/remote/destination```
+```scp -r /path/folder/ username@remote_host:/path_to /remote/destination```
 
 ### RSYNC
-Đồng bộ một tệp tin:
+(Copy từ server về nếu ngược lai ta thay đổi source des)  
+Lệnh hay dùng để đồng bộ một tệp tin:
 ```rsync -avzhe ssh root@x.x.x.x:/path/file.txt /path```
 
 Đồng bộ một thư mục (thêm -r cho đệ quy):
 ```rsync -avzhe ssh -r root@x.x.x.x:/path/folder /path```
-
-Lưu ý: Sử dụng các tùy chọn phù hợp cho đồng bộ gia tăng.
 
 
 ### Cat
@@ -138,7 +138,7 @@ Sắp xếp số theo thứ tự giảm dần:
 ```sort -nr filename```
 
 Sắp xếp theo cột:
-```sort -k filename```
+```sort -k cột filename```
 
 ### Uniq
 Lọc các dòng trùng lặp liền kề:
@@ -234,8 +234,9 @@ Kiểm tra dung lượng đĩa:
 Lưu ý: Phân vùng / là phân vùng gốc của hệ thống.
 
 
-### Symboliaux```
-
+### Process
+Xem tất cả các tiến trình trên hệ thống
+```ps aux```
 Kết thúc tiến trình bằng PID:
 ```kill PID```
 
