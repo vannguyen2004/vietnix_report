@@ -47,7 +47,7 @@ Hiển thị với số dòng và lọc dòng cụ thể:
 
 Ghi nhiều dòng vào tệp tin sử dụng EOF:
 ```
-cat << EOF > abc.txt
+cat > abc.txt << EOF 
 Hello
 Hi
 EOF
