@@ -240,7 +240,9 @@ Lưu ý: Phân vùng / là phân vùng gốc của hệ thống.
 Xem tất cả các tiến trình trên hệ thống
 ```ps aux```
 Kết thúc tiến trình bằng PID:
-```kill PID```
+```kill PID```   
+
+
 ```kill -9 PID```
 
 ### Free
