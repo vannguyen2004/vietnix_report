@@ -48,7 +48,7 @@ Sau khi tải xong sẽ có ký tự apache ở đây
 Ta chọn add site ở đây nhé. Chú ý Wordpress chạy trên PHP nên ta chọn PHP Project 
 ![image](https://github.com/user-attachments/assets/d35e5a6d-a696-4622-9540-43c608390c76)
 
-Tải thêm FTP và DATABASE và PHP  nữa nhé 
+Tải thêm FTP và DATABASE và PHP
 ![image](https://github.com/user-attachments/assets/7598785c-3025-405e-a073-13543459cef9)
 
 ![image](https://github.com/user-attachments/assets/3d5517f0-a6bf-4b6e-8a04-5120508f0a2b)
