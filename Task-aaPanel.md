@@ -88,7 +88,14 @@ Setup SSL cho website
 ![image](https://github.com/user-attachments/assets/d2b1386c-e8d0-4c02-bccd-36fffe3d0f22)
 
 ## Setup Web với Lavarel
-1. Truy cập vào VPS 
+Cài đặt Laravel thông qua Laravel Installer
+
+download Laravel Installer thông qua Composer với lệnh: ```composer global laravel/installer```
+Thiết lập biến môi trường: ```echo 'export PATH="$HOME/.config/composer/vendor/bin:$PATH"' >> ~/.bashrc && source ~/.bashrc```
+Sao đó tạo app bằng ```laravel new testlaravel```
+
+
+Sau khi gõ lệnh download, tiếp tục gõ lệnh phía dưới:  ```laravel new testlaravel```
 1. Tải 2 software:
    - one-click deployment 1.3
    - PHP-7.4
@@ -141,8 +148,19 @@ Sau khi upload và kích hoạt
 ![image](https://github.com/user-attachments/assets/98759b84-b3db-4f14-97e8-885363a6f094)
 ![image](https://github.com/user-attachments/assets/0b1f522c-6609-4a7d-9f4b-c11d96155cac)
 ![image](https://github.com/user-attachments/assets/b420c228-007a-4fe6-a8e9-e138f15df4cf)
-
-
+# Cách sử dụng của Plugin All-in-One WP Migration and Backup
+Là một công cụ rất phổ biến để sao lưu (backup) và di chuyển (migration) website WordPress một cách dễ dàng
+Cách hoat động: Plugin sẽ export dữ liệu hiện tại để import vào trang wordpress mới
+1. Cách Xuất Website (Export)
+- Vào All-in-One WP Migration > Export.
+- Tại mục Export To, chọn:
+- File (tạo file tải về).
+- Sau khi export xong, plugin sẽ cung cấp link tải về file .wpress
+2. Cách Nhập Website (Import)
+- Cài WordPress sạch trên site mới, sau đó cài plugin All-in-One WP Migration.
+- Vào All-in-One WP Migration > Import.
+- Chọn file .wpress đã backup từ site cũ.
+- Sau khi hoàn tất, plugin yêu cầu bạn đăng nhập lại bằng thông tin từ website cũ (vì user admin cũng đã được import theo).
 # Tìm hiểu về plugin WP-Optimize – Cache và Litespeed Cache
 Trước tiên ta tìm hiểu 2 plugin này là gì 
 
