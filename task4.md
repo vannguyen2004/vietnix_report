@@ -19,5 +19,5 @@ Tạo User:
 Gán quyền trên database
 - GRANT ALL PRIVILEGES ON wordpress.* TO 'wordpress'@'localhost';
 - GRANT ALL PRIVILEGES ON laravel.* TO 'laravel'@'localhost';
-
+Bật PHP
   Enable moudle
