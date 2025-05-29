@@ -1,6 +1,6 @@
 # Mô hình Nginx Reverse Apache
 1. Đầu tiên Proxy là gì?
-- Hiểu đơn giản Proxy là máy chủ đứng giữa người dùng và server. Nếu dùng để kiểm soát người dùng sẽ là forward proxy. Còn làm việc phía server sẽ là reverse proxy
+- Hiểu đơn giản Proxy là máy chủ trung gian đứng giữa người dùng và server. Nếu dùng để kiểm soát người dùng sẽ là forward proxy. Còn làm việc phía server sẽ là reverse proxy
 2. Vậy Reverse Proxy là gì?
 - Reverse proxy là máy chủ được triển khai ở phía server, phục vụ cho server. Cách hoạt động sẽ nhận các yêu cầu và gửi đến các backend
 3. Vậy Nginx reverse Apache dùng để làm gì. Tại sao lại là server nginx kết hợp với apache
