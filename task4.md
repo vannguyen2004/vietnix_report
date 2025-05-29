@@ -72,9 +72,10 @@ Truy cập bằng http và https trên ```laravel.nguyen.vietnix.tech```
 
 ### Kiểm thử
 
-Các domain ở vHost Apache có thể chạy cùng cổng (ví dụ 8080 trên tất cả các vHost). Kết hợp Proxy pass trên nginx sẽ là IP:PORT
-Ở phần proxy pass nếu ghi là domain sẽ gây ra lỗi 400 bad request gây hiện tượng loop do nginx proxy pass lại chính nó lỗi không truyền đúng header đến backend
-Nếu tắt nginx thì vẫn có thể truy cập web bằng ip:port tuy nhiên nếu chạy các site cùng port thì không thể chỉ định website yêu cầu được.
+- Các domain ở vHost Apache có thể chạy cùng cổng (ví dụ 8080 trên tất cả các vHost). Kết hợp Proxy pass trên nginx sẽ là IP:PORT
+- Ở phần proxy pass nếu ghi là domain sẽ gây ra lỗi 400 bad request gây hiện tượng loop do nginx proxy pass lại chính nó lỗi không truyền đúng header đến backend
+- Nếu tắt nginx thì vẫn có thể truy cập web bằng ip:port tuy nhiên nếu chạy các site cùng port thì không thể chỉ định website yêu cầu được.
+- Còn nếu tắt apache để truy cập thì sẽ gây ra lỗi 502 bad gateway (lỗi này là proxy không connect được với backend), do backend apache bị stop. Lí do khi yêu cầu website wordpress thì sẽ bắt đầu với file index.php. Tuy nhiên hiện tại cấu hình không cache file động .php nên khi Proxy nhận yêu cầu thì nó sẽ pass đến apache lúc này apache không hoạt động quá thời gian nginx sẽ trả kết quả cho người dùng là 502
 
 
 
