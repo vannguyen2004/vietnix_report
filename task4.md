@@ -13,7 +13,7 @@
 
 Ở trên là một chút ưu điểm và nhước điểm của 2 web server trên. Thì đã sinh ra Litespeed server khả năng chịu tại như nginx và có thể dễ dàng tùy chỉnh như apache. Tuy nhiên sẽ tính phí, có phiên bản miễn phí nhưng sẽ không tốt bằng phiên bản trả phí
 
-# Cài đặt Nginx reverse lEMP stack (wordpress và laravel)
+# Cài đặt Nginx reverse LAMP stack (wordpress và laravel)
 ### Các bước thực hiện
 1. Tải các gói cài đặt cần thiết
 - Cài đặt nginx ```apt install -y nginx ```
@@ -43,13 +43,15 @@ Truy cập bằng http và https trên ```wp.nguyen.vietnix.tech```
 
 ![image](https://github.com/user-attachments/assets/17f26d9c-8b2f-43f3-ad50-7237b70bddf2)
 
+Truy cập phpMyadmin 
+![image](https://github.com/user-attachments/assets/45c93892-215e-4224-9f8e-92784c4cd4af)
+
 
 Truy cập bằng http và https trên ```laravel.nguyen.vietnix.tech```
 ![image](https://github.com/user-attachments/assets/27c76521-1300-455b-b708-4be570c412a2)
 ![image](https://github.com/user-attachments/assets/cde3df7d-5e18-4c0b-94f3-d71003dc3548)
 
-Truy cập phpMyadmin
-![image](https://github.com/user-attachments/assets/45c93892-215e-4224-9f8e-92784c4cd4af)
+
 
 
 
