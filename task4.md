@@ -1,8 +1,16 @@
 # Mô hình Nginx Reverse Apache
-1. Đầu tiên Proxy là gì?
+1. Proxy là gì? Và Reverse Proxy là gì?
 - Hiểu đơn giản Proxy là máy chủ trung gian đứng giữa người dùng và server. Nếu dùng để kiểm soát người dùng sẽ là forward proxy. Còn làm việc phía server sẽ là reverse proxy
-2. Vậy Reverse Proxy là gì?
-- Reverse proxy là máy chủ được triển khai ở phía server, phục vụ cho server. Cách hoạt động sẽ nhận các yêu cầu và gửi đến các backend
+- Reverse proxy là máy chủ được triển khai ở phía server, phục vụ cho server. Cách hoạt động sẽ nhận các yêu cầu và gửi đến các backend hoặc các web server khác
+2. Nginx:
+- Nginx Là phần mềm mã nguồn mỡ đa năng dành cho web server, reverse proxy, caching, load balancing, Media streaming
+- Về các hoạt động: Nginx hoạt động theo kiến trúc hướng sự kiên, bất đồng bộ của Nginx, giúp xử lý hàng ngàn kết nối đồng thời hiệu quả và tiết kiệm được tài nguyên. Thay vì tao ra Thread cho mỗi yêu cầu thì Nginx quản lí worker connections trong một tiến trình gọi là worker process.
+- Gia tăng tốc độ reverse proxy thông qua bộ nhớ đệm (cache), phục vụ cho các tập tin tĩnh và lập chỉ mục cho tập tin, sao lưu nhật kí truy vấn
+
+3 Khác nhau giữa Nginx và Apache
+Đều là các web server phổ biến mã nguồn mở tuy nhiên cũng có một số khác biệt 
+Nginx: sử lí theo kiến trúc hướng sự kiện không đồng bộ. Giúp không tạo ra qua nhiều tiến trình để xử lí nên dạt được hiệu năng cao dù cấu hình phần cứng thấp. Vượt trội hơn so với sử lí các nội dung tĩnh do tích hợp cache
+Apache: Sử dụng kiến trúc phân luồng (threading) hoặc keep-alive. Khả năng chịu tải kém hơn Nginx cùng cấu hình phần cứng. Tuy nhiên Apache có hỗ trợ tùy chỉnh cấu hình thông qua htaccess và khả năng mở rộng cao với nhiều nhiều module
 3. Vậy Nginx reverse Apache dùng để làm gì. Tại sao lại là server nginx kết hợp với apache
 - Về hiệu năng nginx sẽ có hiệu năng cao hơn hẳn so với apache. Do về cơ chế xử bất đồng bộ. Mặc dù apache cũng có mod worker và event nhưng hiệu xuất vẫn không bằng. Nên nginx đứng trước apache là lựa chọn rất hợp lí. Tránh được quá tải backend
 - Khả năng giữ kết nối tốt tránh được quá trình bắt tay (hand shake giữa người dùng là server làm hao tốn băng thông, hiệu năng kém)
@@ -12,6 +20,8 @@
 - Lí do chính là khả năng tùy chính thấp hơn do với apache. Trên môi trường hosting hay người quản trị server và phát triển website khác nhau thì apache lại có ưu thế hơn hẵn do có thể dùng htaccess để cấu hình ở phía client thay thì phải thay đổi cấu hình của server điều này giúp thuận tiện cho người deploy code nhưng không làm ảnh hưởng tới server hoặc tới những người dùng khác (ví dụ trong môi trường share hosting)
 
 Ở trên là một chút ưu điểm và nhước điểm của 2 web server trên. Thì đã sinh ra Litespeed server khả năng chịu tại như nginx và có thể dễ dàng tùy chỉnh như apache. Tuy nhiên sẽ tính phí, có phiên bản miễn phí nhưng sẽ không tốt bằng phiên bản trả phí
+
+Khả năng cache nội dung tĩnh của Nginx tốt hơn
 
 # Cài đặt Nginx reverse LAMP stack (wordpress và laravel)
 ### Các bước thực hiện
