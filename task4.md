@@ -10,7 +10,7 @@
 
 3 Khác nhau giữa Nginx và Apache
 Đều là các web server phổ biến mã nguồn mở tuy nhiên cũng có một số khác biệt 
-- Nginx: sử lí theo kiến trúc hướng sự kiện không đồng bộ. Giúp không tạo ra qua nhiều tiến trình để xử lí nên dạt được hiệu năng cao dù cấu hình phần cứng thấp. Vượt trội hơn so với sử lí các nội dung tĩnh do tích hợp cache
+- Nginx: xử lí theo kiến trúc hướng sự kiện không đồng bộ. Giúp không tạo ra qua nhiều tiến trình để xử lí nên dạt được hiệu năng cao dù cấu hình phần cứng thấp. Vượt trội hơn so với sử lí các nội dung tĩnh do tích hợp cache
 - Apache: Sử dụng kiến trúc phân luồng (threading) hoặc keep-alive. Khả năng chịu tải kém hơn Nginx cùng cấu hình phần cứng. Tuy nhiên Apache có hỗ trợ tùy chỉnh cấu hình thông qua htaccess và khả năng mở rộng cao với nhiều  module
 
 
@@ -26,7 +26,7 @@
 - Cài MySQL ```apt -y install mysql-server```
 - phpMyadmin downlòad tại trang chủ: https://www.phpmyadmin.net/downloads/
 2. Tạo User
-allow root remote bằng mysql_installation_secure  hoặc dổi từ root@localhost thành root@% hoặc IP remote  
+allow root remote bằng mysql_installation_secure  hoặc đổi từ root@localhost thành root@% hoặc IP remote  
 Tạo database MySQL: 
 - CREATE DATABASE wordpress;
 - CREATE DATABASE laravel;  
@@ -38,11 +38,16 @@ Gán quyền trên database
 - GRANT ALL PRIVILEGES ON laravel.* TO 'laravel'@'localhost';
 3. Cấu hình Proxy Pass trên Nginx và Vhost trên Apache
 - Cấu hình Reverse Proxy trên wordpress
-![image](https://github.com/user-attachments/assets/55969dac-a37f-4271-8616-85406ad2bc03)
+![image](https://github.com/user-attachments/assets/f7070ec6-3905-4a2d-ba31-a63b41544e14)
+
 - Cấu hình Reverse Proxy trên laravel
-![image](https://github.com/user-attachments/assets/e21be8f6-e32e-41d9-ae72-9958d0f6ee08)
-- Cấu hình vHost: thiết lập thêm mod_header thay đổi trường cache control trên header gói tin và type public cho các trình duyệt máy tính và Máy chủ Proxy cache nội dung
-![image](https://github.com/user-attachments/assets/53a73a5f-b803-434f-a37a-f4c2b6e76f01)
+![image](https://github.com/user-attachments/assets/c52c8246-dc88-4620-8be6-747c56967451)
+
+- Cấu hình vHost cho wordpress
+![image](https://github.com/user-attachments/assets/68b50d7b-adbd-4752-8aa8-2235ec01ccce)
+- Cấu hình vHost cho laravel
+![image](https://github.com/user-attachments/assets/7110bd96-55ca-4b8b-99a5-23329c920535)
+
 
 
 
