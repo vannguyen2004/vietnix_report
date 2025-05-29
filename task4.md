@@ -25,10 +25,10 @@
 allow root remote bằng mysql_installation_secure  hoặc dổi từ root@localhost thành root@% hoặc IP remote  
 Tạo database MySQL: 
 - CREATE DATABASE wordpress;
-- CREATE DATABASE laravel;
+- CREATE DATABASE laravel;  
 Tạo User: 
 - CREATE USER 'wordpress'@'localhost'  IDENTIFIED BY  'wordpress';
-- CREATE USER 'laravel'@'localhost' IDENTIFIED BY 'laravel';
+- CREATE USER 'laravel'@'localhost' IDENTIFIED BY 'laravel';  
 Gán quyền trên database
 - GRANT ALL PRIVILEGES ON wordpress.* TO 'wordpress'@'localhost';
 - GRANT ALL PRIVILEGES ON laravel.* TO 'laravel'@'localhost';
