@@ -22,7 +22,7 @@
 - Cài MySQL ```apt -y install mysql-server```
 - phpMyadmin downlòad tại trang chủ: https://www.phpmyadmin.net/downloads/
 2. Tạo User
-allow root remote bằng mysql_installation_secure
+allow root remote bằng mysql_installation_secure  hoặc dổi từ root@localhost thành root@% hoặc IP remote
 Tạo database MySQL: 
 - CREATE DATABASE wordpress;
 - CREATE DATABASE laravel;
