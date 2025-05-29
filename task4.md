@@ -10,18 +10,11 @@
 3 Khác nhau giữa Nginx và Apache
 Đều là các web server phổ biến mã nguồn mở tuy nhiên cũng có một số khác biệt 
 - Nginx: sử lí theo kiến trúc hướng sự kiện không đồng bộ. Giúp không tạo ra qua nhiều tiến trình để xử lí nên dạt được hiệu năng cao dù cấu hình phần cứng thấp. Vượt trội hơn so với sử lí các nội dung tĩnh do tích hợp cache
-- Apache: Sử dụng kiến trúc phân luồng (threading) hoặc keep-alive. Khả năng chịu tải kém hơn Nginx cùng cấu hình phần cứng. Tuy nhiên Apache có hỗ trợ tùy chỉnh cấu hình thông qua htaccess và khả năng mở rộng cao với nhiều nhiều module
-3. Vậy Nginx reverse Apache dùng để làm gì. Tại sao lại là server nginx kết hợp với apache
-- Về hiệu năng nginx sẽ có hiệu năng cao hơn hẳn so với apache. Do về cơ chế xử bất đồng bộ. Mặc dù apache cũng có mod worker và event nhưng hiệu xuất vẫn không bằng. Nên nginx đứng trước apache là lựa chọn rất hợp lí. Tránh được quá tải backend
-- Khả năng giữ kết nối tốt tránh được quá trình bắt tay (hand shake giữa người dùng là server làm hao tốn băng thông, hiệu năng kém)
-- Khả năng cache file tĩnh. Tuy nhiên nổi trội vẫn là hiệu suất tốt.
+- Apache: Sử dụng kiến trúc phân luồng (threading) hoặc keep-alive. Khả năng chịu tải kém hơn Nginx cùng cấu hình phần cứng. Tuy nhiên Apache có hỗ trợ tùy chỉnh cấu hình thông qua htaccess và khả năng mở rộng cao với nhiều  module
 
-4. Vậy tại sao không sử dụng nginx để là web server chính cho website mà lại dùng là reverse proxy.
-- Lí do chính là khả năng tùy chính thấp hơn do với apache. Trên môi trường hosting hay người quản trị server và phát triển website khác nhau thì apache lại có ưu thế hơn hẵn do có thể dùng htaccess để cấu hình ở phía client thay thì phải thay đổi cấu hình của server điều này giúp thuận tiện cho người deploy code nhưng không làm ảnh hưởng tới server hoặc tới những người dùng khác (ví dụ trong môi trường share hosting)
 
 Ở trên là một chút ưu điểm và nhước điểm của 2 web server trên. Thì đã sinh ra Litespeed server khả năng chịu tại như nginx và có thể dễ dàng tùy chỉnh như apache. Tuy nhiên sẽ tính phí, có phiên bản miễn phí nhưng sẽ không tốt bằng phiên bản trả phí
 
-Khả năng cache nội dung tĩnh của Nginx tốt hơn
 
 # Cài đặt Nginx reverse LAMP stack (wordpress và laravel)
 ### Các bước thực hiện
@@ -43,6 +36,15 @@ Gán quyền trên database
 - GRANT ALL PRIVILEGES ON wordpress.* TO 'wordpress'@'localhost';
 - GRANT ALL PRIVILEGES ON laravel.* TO 'laravel'@'localhost';
 3. Cấu hình Proxy Pass trên Nginx và Vhost trên Apache
+- Cấu hình Reverse Proxy trên wordpress
+![image](https://github.com/user-attachments/assets/55969dac-a37f-4271-8616-85406ad2bc03)
+- Cấu hình Reverse Proxy trên laravel
+![image](https://github.com/user-attachments/assets/e21be8f6-e32e-41d9-ae72-9958d0f6ee08)
+- Cấu hình vHost: thiết lập thêm mod_header thay đổi trường cache control trên header gói tin và type public cho các trình duyệt máy tính và Máy chủ Proxy cache nội dung
+![image](https://github.com/user-attachments/assets/53a73a5f-b803-434f-a37a-f4c2b6e76f01)
+
+
+
 4. Cài đặt phpMyadmin trên wp.nguyen.vietnix.tech  
 Dùng gói đã chuẩn bị trước cho vào website và xả nén
 
@@ -62,6 +64,13 @@ Truy cập phpMyadmin
 Truy cập bằng http và https trên ```laravel.nguyen.vietnix.tech```
 ![image](https://github.com/user-attachments/assets/27c76521-1300-455b-b708-4be570c412a2)
 ![image](https://github.com/user-attachments/assets/cde3df7d-5e18-4c0b-94f3-d71003dc3548)
+
+Kiểm tra cache
+![image](https://github.com/user-attachments/assets/dcc7089a-ec96-411e-850a-40d89518720b)
+Nội dung cache được ghi bởi Nginx
+![image](https://github.com/user-attachments/assets/b6adffe1-273c-4c67-a8f2-01dc4bef15f5)
+
+
 
 
 
