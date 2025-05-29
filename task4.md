@@ -33,7 +33,7 @@ Gán quyền trên database
 - GRANT ALL PRIVILEGES ON wordpress.* TO 'wordpress'@'localhost';
 - GRANT ALL PRIVILEGES ON laravel.* TO 'laravel'@'localhost';
 3. Cấu hình Proxy Pass trên Nginx và Vhost trên Apache
-4. Cài đặt phpMyadmin trên wp.nguyen.vietnix.tech
+4. Cài đặt phpMyadmin trên wp.nguyen.vietnix.tech  
 Dùng gói đã chuẩn bị trước cho vào website và xả nén
 
 ### Kết quả
