@@ -37,13 +37,14 @@ Gán quyền trên database
 
 ### Kết quả
 
-Truy cập bằng http và https trên wp.nguyen.vietnix.tech
+Truy cập bằng http và https trên ```wp.nguyen.vietnix.tech```
 ![image](https://github.com/user-attachments/assets/ba521f6c-f5bb-435b-a64b-343d33828d0c)
-![image](https://github.com/user-attachments/assets/d542cbed-51eb-49f3-a925-e53227a33312)
+![image](https://github.com/user-attachments/assets/eeae65eb-7d6f-4245-b160-cbfe07f63064)
+
 ![image](https://github.com/user-attachments/assets/17f26d9c-8b2f-43f3-ad50-7237b70bddf2)
 
 
-Truy cập bằng http và https trên laravel.nguyen.vietnix.tech
+Truy cập bằng http và https trên ```laravel.nguyen.vietnix.tech```
 ![image](https://github.com/user-attachments/assets/27c76521-1300-455b-b708-4be570c412a2)
 ![image](https://github.com/user-attachments/assets/cde3df7d-5e18-4c0b-94f3-d71003dc3548)
 
