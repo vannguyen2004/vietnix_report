@@ -66,8 +66,10 @@ Truy cập bằng http và https trên ```laravel.nguyen.vietnix.tech```
 ![image](https://github.com/user-attachments/assets/cde3df7d-5e18-4c0b-94f3-d71003dc3548)
 
 Kiểm tra cache
+
 ![image](https://github.com/user-attachments/assets/dcc7089a-ec96-411e-850a-40d89518720b)
 Nội dung cache được ghi bởi Nginx
+
 ![image](https://github.com/user-attachments/assets/b6adffe1-273c-4c67-a8f2-01dc4bef15f5)
 
 
