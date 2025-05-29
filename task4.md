@@ -5,7 +5,7 @@
 - Reverse proxy là máy chủ được triển khai ở phía server, phục vụ cho server. Cách hoạt động sẽ nhận các yêu cầu và gửi đến các backend
 3. Vậy Nginx reverse Apache dùng để làm gì. Tại sao lại là server nginx kết hợp với apache
 - Về hiệu năng nginx sẽ có hiệu năng cao hơn hẳn so với apache. Do về cơ chế xử bất đồng bộ. Mặc dù apache cũng có mod worker và event nhưng hiệu xuất vẫn không bằng. Nên nginx đứng trước apache là lựa chọn rất hợp lí. Tránh được quá tải backend
-- Khả năng giữ SSL tốt tránh được quá trình bắt tay (hand shake giữa người dùng là server làm hao tốn băng thông, hiệu năng kém)
+- Khả năng giữ kết nối tốt tránh được quá trình bắt tay (hand shake giữa người dùng là server làm hao tốn băng thông, hiệu năng kém)
 - Khả năng cache file tĩnh. Tuy nhiên nổi trội vẫn là hiệu suất tốt.
 
 4. Vậy tại sao không sử dụng nginx để là web server chính cho website mà lại dùng là reverse proxy.
