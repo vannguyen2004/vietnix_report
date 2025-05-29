@@ -5,7 +5,7 @@
 2. Nginx:
 - Nginx Là phần mềm mã nguồn mỡ đa năng dành cho web server, reverse proxy, caching, load balancing, Media streaming
 - Về các hoạt động: Nginx hoạt động theo kiến trúc hướng sự kiên, bất đồng bộ của Nginx, giúp xử lý hàng ngàn kết nối đồng thời hiệu quả và tiết kiệm được tài nguyên. Thay vì tao ra Thread cho mỗi yêu cầu thì Nginx quản lí worker connections trong một tiến trình gọi là worker process.
-- Gia tăng tốc độ reverse proxy thông qua bộ nhớ đệm (cache), phục vụ cho các tập tin tĩnh và lập chỉ mục cho tập tin, sao lưu nhật kí truy vấn
+- Gia tăng tốc độ reverse proxy thông qua bộ nhớ đệm (cache), phục vụ cho các tập tin tĩnh tốt hơn và lập chỉ mục cho tập tin, sao lưu nhật kí truy vấn
 
 3 Khác nhau giữa Nginx và Apache
 Đều là các web server phổ biến mã nguồn mở tuy nhiên cũng có một số khác biệt 
