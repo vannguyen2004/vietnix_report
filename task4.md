@@ -45,6 +45,7 @@ Truy cập bằng http và https trên ```wp.nguyen.vietnix.tech```
 
 Truy cập phpMyadmin 
 ![image](https://github.com/user-attachments/assets/45c93892-215e-4224-9f8e-92784c4cd4af)
+![image](https://github.com/user-attachments/assets/2a36405c-d341-4ba3-b16f-64128ca99137)
 
 
 Truy cập bằng http và https trên ```laravel.nguyen.vietnix.tech```
