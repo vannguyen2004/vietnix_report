@@ -9,8 +9,8 @@
 
 3 Khác nhau giữa Nginx và Apache
 Đều là các web server phổ biến mã nguồn mở tuy nhiên cũng có một số khác biệt 
-Nginx: sử lí theo kiến trúc hướng sự kiện không đồng bộ. Giúp không tạo ra qua nhiều tiến trình để xử lí nên dạt được hiệu năng cao dù cấu hình phần cứng thấp. Vượt trội hơn so với sử lí các nội dung tĩnh do tích hợp cache
-Apache: Sử dụng kiến trúc phân luồng (threading) hoặc keep-alive. Khả năng chịu tải kém hơn Nginx cùng cấu hình phần cứng. Tuy nhiên Apache có hỗ trợ tùy chỉnh cấu hình thông qua htaccess và khả năng mở rộng cao với nhiều nhiều module
+- Nginx: sử lí theo kiến trúc hướng sự kiện không đồng bộ. Giúp không tạo ra qua nhiều tiến trình để xử lí nên dạt được hiệu năng cao dù cấu hình phần cứng thấp. Vượt trội hơn so với sử lí các nội dung tĩnh do tích hợp cache
+- Apache: Sử dụng kiến trúc phân luồng (threading) hoặc keep-alive. Khả năng chịu tải kém hơn Nginx cùng cấu hình phần cứng. Tuy nhiên Apache có hỗ trợ tùy chỉnh cấu hình thông qua htaccess và khả năng mở rộng cao với nhiều nhiều module
 3. Vậy Nginx reverse Apache dùng để làm gì. Tại sao lại là server nginx kết hợp với apache
 - Về hiệu năng nginx sẽ có hiệu năng cao hơn hẳn so với apache. Do về cơ chế xử bất đồng bộ. Mặc dù apache cũng có mod worker và event nhưng hiệu xuất vẫn không bằng. Nên nginx đứng trước apache là lựa chọn rất hợp lí. Tránh được quá tải backend
 - Khả năng giữ kết nối tốt tránh được quá trình bắt tay (hand shake giữa người dùng là server làm hao tốn băng thông, hiệu năng kém)
