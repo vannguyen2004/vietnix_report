@@ -60,7 +60,6 @@ Truy cập bằng http và https trên ```wp.nguyen.vietnix.tech```
 ![image](https://github.com/user-attachments/assets/ba521f6c-f5bb-435b-a64b-343d33828d0c)
 ![image](https://github.com/user-attachments/assets/eeae65eb-7d6f-4245-b160-cbfe07f63064)
 
-![image](https://github.com/user-attachments/assets/17f26d9c-8b2f-43f3-ad50-7237b70bddf2)
 
 Truy cập phpMyadmin 
 ![image](https://github.com/user-attachments/assets/45c93892-215e-4224-9f8e-92784c4cd4af)
@@ -71,14 +70,11 @@ Truy cập bằng http và https trên ```laravel.nguyen.vietnix.tech```
 ![image](https://github.com/user-attachments/assets/27c76521-1300-455b-b708-4be570c412a2)
 ![image](https://github.com/user-attachments/assets/cde3df7d-5e18-4c0b-94f3-d71003dc3548)
 
-Kiểm tra cache
+### Kiểm thử
 
-![image](https://github.com/user-attachments/assets/dcc7089a-ec96-411e-850a-40d89518720b)
-Nội dung cache được ghi bởi Nginx
-
-![image](https://github.com/user-attachments/assets/b6adffe1-273c-4c67-a8f2-01dc4bef15f5)
-
-
+Các domain ở vHost Apache có thể chạy cùng cổng (ví dụ 8080 trên tất cả các vHost). Kết hợp Proxy pass trên nginx sẽ là IP:PORT
+Ở phần proxy pass nếu ghi là domain sẽ gây ra lỗi 400 bad request gây hiện tượng loop do nginx proxy pass lại chính nó lỗi không truyền đúng header đến backend
+Nếu tắt nginx thì vẫn có thể truy cập web bằng ip:port tuy nhiên nếu chạy các site cùng port thì không thể chỉ định website yêu cầu được.
 
 
 
