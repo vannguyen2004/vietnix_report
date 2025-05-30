@@ -34,49 +34,17 @@ Action chọn Allow
 ![image](https://github.com/user-attachments/assets/f178210a-c809-40fa-bebd-e3934e0ea66a)
 ![image](https://github.com/user-attachments/assets/2f632b69-6ade-46c2-97bc-d2fb208031a7)
 
-
-
-
-
 # Thực hiện block port, block ip trên window fw
 Việc Block Port hay IP thao tác sẽ giống với Allow chỉ khác ở phần action chọn Block the connection
 
 ![image](https://github.com/user-attachments/assets/ff40446e-d269-4234-85cf-a38282aa38b9)
 
 # Thực hiện giới hạn port, giới hạn ip trên window fw chỉ cho phép ip chỉ định truy cập
-![image](https://github.com/user-attachments/assets/466b0cf1-42cf-414c-9fde-24ef51ec8f6c)
-![image](https://github.com/user-attachments/assets/eeef446a-e082-41cb-a861-ca12f5792676)
-![image](https://github.com/user-attachments/assets/221aeb84-c5be-4b79-9e12-b12cebbf93a0)
-![image](https://github.com/user-attachments/assets/3deed9f4-2cff-434b-b98b-9e95659a5bfc)
-![image](https://github.com/user-attachments/assets/8d004815-c56f-455f-99b7-2e8536437212)
-
-**Tạo một rule để deny all để chặn truy cập tất các cả các yêu cầu không hợp lệ**
-![image](https://github.com/user-attachments/assets/7f61211e-4101-446f-9e82-b3c06184af2b)
-![image](https://github.com/user-attachments/assets/ce3e463f-a965-4071-8ea0-6daf47df184f)
-![image](https://github.com/user-attachments/assets/9d9c5caf-7778-45d7-b5f6-f23934b67102)
-![image](https://github.com/user-attachments/assets/0d9cb020-e42c-4c43-9644-c74b6e4fb676)
-![image](https://github.com/user-attachments/assets/5dc54f6a-a961-458b-b256-5c7951463956)
-![image](https://github.com/user-attachments/assets/0894e129-cf5a-4070-b4cc-60f59db6f83f)  
-
-**Sau đó kéo rule này đến cuối cùng để khi nếu không match với các rule allow rule này sẽ deny tất cả**
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Giới hạn IP truy cập tới VPS
+![image](https://github.com/user-attachments/assets/55b3c04a-ac98-4090-a119-82fec7b884f9)
+![image](https://github.com/user-attachments/assets/b164e2a1-935d-40c3-90c7-3b4a26344250)
+![image](https://github.com/user-attachments/assets/e7f4edee-0164-4427-9fda-63164c72a573)
+![image](https://github.com/user-attachments/assets/907fcde1-f390-4e47-b127-e52e305c0a6a)
 
 # Thực hành cài đặt 
 - ISS đã được cài đặt mặt định trên window tại Vietnix  
