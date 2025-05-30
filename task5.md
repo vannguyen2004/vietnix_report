@@ -47,7 +47,7 @@ Giới hạn IP truy cập tới VPS
 ![image](https://github.com/user-attachments/assets/907fcde1-f390-4e47-b127-e52e305c0a6a)
 
 # Thực hành cài đặt 
-- ISS đã được cài đặt mặt định trên window tại Vietnix  
+- IIS đã được cài đặt mặt định trên window tại Vietnix  
 - Cài thêm CGI và PHP manager tại https://github.com/picassio/PHPManagerForIIS-Versiones
 - Cài đặt PHP: https://windows.php.net/download/
 - MySQL https://www.mysql.com/downloads/ 
