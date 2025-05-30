@@ -50,7 +50,7 @@ Việc Block Port hay IP thao tác sẽ giống với Allow chỉ khác ở ph�
 ![image](https://github.com/user-attachments/assets/3deed9f4-2cff-434b-b98b-9e95659a5bfc)
 ![image](https://github.com/user-attachments/assets/8d004815-c56f-455f-99b7-2e8536437212)
 
-Tạo một rule để deny all để chặn truy cập tất các cả các yêu cầu không hợp lệ
+**Tạo một rule để deny all để chặn truy cập tất các cả các yêu cầu không hợp lệ**
 ![image](https://github.com/user-attachments/assets/7f61211e-4101-446f-9e82-b3c06184af2b)
 ![image](https://github.com/user-attachments/assets/ce3e463f-a965-4071-8ea0-6daf47df184f)
 ![image](https://github.com/user-attachments/assets/9d9c5caf-7778-45d7-b5f6-f23934b67102)
