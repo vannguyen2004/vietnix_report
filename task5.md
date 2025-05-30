@@ -49,12 +49,10 @@ Việc Block Port hay IP thao tác sẽ giống với Allow chỉ khác ở ph�
 
 
 # Thực hành cài đặt 
-
-- Webserver IIS, trên Webserver IIS
-ISS đã được cài đặt mặt định trên window tại Vietnix  
-Cài thêm CGI và PHP manager, và PHP
-tại https://github.com/picassio/PHPManagerForIIS-Versiones và 
-MySQL https://www.mysql.com/downloads/
+- ISS đã được cài đặt mặt định trên window tại Vietnix  
+- Cài thêm CGI và PHP manager tại https://github.com/picassio/PHPManagerForIIS-Versiones
+- Cài đặt PHP: https://windows.php.net/download/
+- MySQL https://www.mysql.com/downloads/ 
 
   + Cài đặt website wordpress mặc định
 ![image](https://github.com/user-attachments/assets/f165d970-33b0-4ef2-bff8-e08f135d5b1b)
