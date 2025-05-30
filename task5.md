@@ -13,7 +13,8 @@ Chọn Action match với Rule vừa tạo
 ![image](https://github.com/user-attachments/assets/ed69d52e-25b9-44be-ac82-4e9ba6cb6384)
 ![image](https://github.com/user-attachments/assets/dc9fa964-6c8c-4b33-877d-8dbd760dc909)
 
-3. Allow IP  
+3. Allow IP
+Chọn New Rule   
 Rule Type chọn custom  
 ![image](https://github.com/user-attachments/assets/3562d66a-77a4-4683-8261-5c7abd5077c8)
 
