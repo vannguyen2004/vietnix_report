@@ -51,10 +51,17 @@ Việc Block Port hay IP thao tác sẽ giống với Allow chỉ khác ở ph�
 # Thực hành cài đặt 
 
 - Webserver IIS, trên Webserver IIS
+ISS đã được cài đặt mặt định trên window tại Vietnix  
+Cài thêm CGI và PHP manager, và PHP
+tại https://github.com/picassio/PHPManagerForIIS-Versiones và 
+MySQL https://www.mysql.com/downloads/
 
   + Cài đặt website wordpress mặc định
+![image](https://github.com/user-attachments/assets/f165d970-33b0-4ef2-bff8-e08f135d5b1b)
 
   + Cài đặt SSL
+Chuyển cert sang PFX sau đó vào server certificate tại IIS để add vào
+![image](https://github.com/user-attachments/assets/49203e4c-2bc3-466a-8ac0-3a3be02c1bfc)
 
 - SQL Server: 2016 
 Link download: https://software.vietnix.tech/datastore/sources/SQL_Server/sql2016/
