@@ -56,8 +56,9 @@ Việc Block Port hay IP thao tác sẽ giống với Allow chỉ khác ở ph�
 ![image](https://github.com/user-attachments/assets/9d9c5caf-7778-45d7-b5f6-f23934b67102)
 ![image](https://github.com/user-attachments/assets/0d9cb020-e42c-4c43-9644-c74b6e4fb676)
 ![image](https://github.com/user-attachments/assets/5dc54f6a-a961-458b-b256-5c7951463956)
-![image](https://github.com/user-attachments/assets/0894e129-cf5a-4070-b4cc-60f59db6f83f)
-Sau đó kéo rule này đến cuối cùng để khi nếu không match với các rule allow rule này sẽ deny tất cả
+![image](https://github.com/user-attachments/assets/0894e129-cf5a-4070-b4cc-60f59db6f83f)  
+
+**Sau đó kéo rule này đến cuối cùng để khi nếu không match với các rule allow rule này sẽ deny tất cả**
 
 
 
