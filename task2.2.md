@@ -64,7 +64,7 @@ Hiển thị phần cuối của tệp tin:
 ```tail file.txt```
 
 Hiển thị cập nhật theo thời gian thực:
-```tailf file.txt```
+```tail -f file.txt```
 
 ### Sed
 Tìm và thay thế một chuỗi trong tệp tin:
