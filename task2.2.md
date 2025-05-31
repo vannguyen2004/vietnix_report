@@ -29,13 +29,12 @@ Sao chép một tệp tin duy nhất:
 Sao chép một thư mục:
 ```scp -r /path/folder/ username@remote_host:/path_to /remote/destination```
 
-### RSYNC
-(Copy từ server về nếu ngược lai ta thay đổi source des)  
-Lệnh hay dùng để đồng bộ một tệp tin:
-```rsync -avzhe ssh root@x.x.x.x:/path/file.txt /path```
+### RSYNC  
+Lệnh dùng để đồng bộ một tệp tin:
+```rsync -av root@x.x.x.x:/path/file.txt /path```
 
 Đồng bộ một thư mục (thêm -r cho đệ quy):
-```rsync -avzhe ssh -r root@x.x.x.x:/path/folder /path```
+```rsync -aP root@x.x.x.x:/path/folder /path```
 
 
 ### Cat
