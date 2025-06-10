@@ -10,7 +10,7 @@
 
 ### Logic thực hiện
 
-Sử dụng gửi lệnh cmd đến VPS để lấy các giá trị như trang thái dịch vụ (nginx, mysql, php-fpm), thông tin RAM, DISK, CPU, Inode, Load Average. Sau đó ta so sánh với các giá trị cho trước nếu vượt qua sẽ gửi thông tin đến Discord.  
+Sử dụng gửi lệnh Command Line đến VPS để lấy các giá trị như trang thái dịch vụ (nginx, mysql, php-fpm), thông tin RAM, DISK, CPU, Inode, Load Average. Sau đó ta so sánh với các giá trị cho trước nếu vượt qua sẽ gửi thông tin đến Discord.  
 Trong Workflow hiện tại đang chia ra thành 2 workflow nhỏ hơn là:
 - Một workflow check dịch vụ đang chạy với thời gian 2 phút 1 lần.
 - Một workflow sẽ check các thông tin của hệ thống như CPU, RAM, DISK, Load Average, Inode sẽ được kiểm tra 5 phút 1 lần
