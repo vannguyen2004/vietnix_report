@@ -191,7 +191,9 @@ Ta truyền vào mess của node code trước đó
 
 ![33](https://github.com/user-attachments/assets/d4593698-1a8c-4e4d-a836-0d550ec77490)
 
-
+- Kiểm tra RAM
+![34](https://github.com/user-attachments/assets/b27afce5-c765-4502-aa5f-cddafab25140)
+![35](https://github.com/user-attachments/assets/886de5a2-9244-4b6b-8c10-b9bbe685d028)
 
 
 
