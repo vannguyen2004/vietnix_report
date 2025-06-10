@@ -8,7 +8,7 @@
 - Gửi cảnh báo khi một dịch vụ quan trọng (Nginx, MySQL, PHP-FPM) bị dừng.
 - Tất cả các Alert sẽ được gửi qua discord
 
-### Workflow 
+# Workflow 
 ```
 { "name": "Check System", "nodes": [ { "parameters": { "command": "free | awk '/Mem:/ {printf \"%.2f\", (1 - $7/$2) * 100}'" }, "id": "c0d1b90b-6803-4f6d-a808-11b542604ac3", "name": "Check RAM usage", "type": "n8n-nodes-base.ssh", "position": [ -740, -220 ], "executeOnce": false, "typeVersion": 1, "credentials": { "sshPassword": { "id": "MEEc25RNo6SKcMdk", "name": "SSH 14.225.255.126" } } }, { "parameters": { "command": "df -h | awk '$NF==\"/\"{printf \"%.2f\", $5}'" }, "id": "6bfa0a1e-da66-48c1-8698-efe3d5c068a0", "name": "Check Disk usage", "type": "n8n-nodes-base.ssh", "position": [ -520, -220 ], "executeOnce": false, "typeVersion": 1, "credentials": { "sshPassword": { "id": "MEEc25RNo6SKcMdk", "name": "SSH 14.225.255.126" } } }, { "parameters": { "command": "#!/bin/bash\nCHECK_ONE=$(top -bn 1 | grep \"Cpu(s)\" | sed \"s/.*, *\\([0-9.]*\\)%* id.*/\\1/\" | awk '{print 100 - $1}')\n#echo $CHECK_ONE\nsleep 5s\nCHECK_TWO=$(top -bn 1 | grep \"Cpu(s)\" | sed \"s/.*, *\\([0-9.]*\\)%* id.*/\\1/\" | awk '{print 100 - $1}')\n#echo $CHECK_TWO\nsleep 5s\nCHECK_THREE=$(top -bn 1 | grep \"Cpu(s)\" | sed \"s/.*, *\\([0-9.]*\\)%* id.*/\\1/\" | awk '{print 100 - $1}')\n#echo $CHECK_THREE\nsleep 5s\nCHECK_FOUR=$(top -bn 1 | grep \"Cpu(s)\" | sed \"s/.*, *\\([0-9.]*\\)%* id.*/\\1/\" | awk '{print 100 - $1}')\n#echo $CHECK_FOUR\nsleep 5s\nCHECK_FIVE=$(top -bn 1 | grep \"Cpu(s)\" | sed \"s/.*, *\\([0-9.]*\\)%* id.*/\\1/\" | awk '{print 100 - $1}')\n#echo $CHECK_FIVE\nif (( $(echo \"$CHECK_ONE > 90\" | bc -l) )) && \\\n   (( $(echo \"$CHECK_TWO > 90\" | bc -l) )) && \\\n   (( $(echo \"$CHECK_THREE > 90\" | bc -l) )) && \\\n   (( $(echo \"$CHECK_FOUR > 90\" | bc -l) )) && \\\n   (( $(echo \"$CHECK_FIVE > 90\" | bc -l) )); then\n\n    echo $CHECK_FIVE\nelse\n    echo 0\nfi\n\n\n" }, "id": "817771fc-d28f-4abd-b9d7-8ec228e4f7ed", "name": "Check CPU usage", "type": "n8n-nodes-base.ssh", "position": [ -1160, -220 ], "executeOnce": false, "typeVersion": 1, "credentials": { "sshPassword": { "id": "MEEc25RNo6SKcMdk", "name": "SSH 14.225.255.126" } } }, { "parameters": { "command": "#!/bin/bash\n\ncheck_nginx=$(systemctl is-active nginx | awk \"{print $1}\")\necho $check_nginx\ncheck_mysql=$(systemctl is-active mysql | awk \"{print $1}\")\necho $check_mysql\ncheck_php_fpm=$(systemctl is-active php8.1-fpm | awk \"{print $1}\")\necho $check_php_fpm\n" }, "id": "25e36b7a-4f6d-40e1-852f-de9207d5dfba", "name": "Check Service", "type": "n8n-nodes-base.ssh", "position": [ -80, -220 ], "executeOnce": false, "typeVersion": 1, "credentials": { "sshPassword": { "id": "MEEc25RNo6SKcMdk", "name": "SSH 14.225.255.126" } } }, { "parameters": { "command": "df -ih | awk '$NF==\"/\"{printf \"%.2f\", $5}'" }, "type": "n8n-nodes-base.ssh", "typeVersion": 1, "position": [ -960, -220 ], "id": "777ddd34-cd9a-41ae-a85e-c1600ebdd84e", "name": "Check inode Usage", "credentials": { "sshPassword": { "id": "MEEc25RNo6SKcMdk", "name": "SSH 14.225.255.126" } } }, { "parameters": { "command": "#!/bin/bash\n\n# Lấy số core CPU\ncores=$(nproc)\n\n# Lấy load average 1 phút\nload1=$(awk '{print $2}' /proc/loadavg)\n\n# So sánh\nthreshold=$(echo \"$cores * 1.0\" | bc)  # cho phép 100% CPU load\n\n# In thông báo\nif (( $(echo \"$load1 > $threshold\" | bc -l) )); then\n    echo $load1\nelse\n    echo 0\nfi\n" }, "id": "c6b6558d-5cf6-4989-8ccc-0bee2e40c79e", "name": "Check Average", "type": "n8n-nodes-base.ssh", "position": [ -300, -220 ], "executeOnce": false, "typeVersion": 1, "credentials": { "sshPassword": { "id": "MEEc25RNo6SKcMdk", "name": "SSH 14.225.255.126" } } }, { "parameters": { "rule": { "interval": [ { "field": "minutes" } ] } }, "id": "3ee87af8-f164-4e60-9d42-eb65a53ce0f3", "name": "Trigger Check System", "type": "n8n-nodes-base.scheduleTrigger", "position": [ -1400, -220 ], "typeVersion": 1.2 }, { "parameters": { "assignments": { "assignments": [ { "id": "49cf7bfb-eb70-454c-811b-6a6f9ecb462b", "name": "Nginx Status ", "value": "={{ $json.ServiceStatus.split('\\n')[0].trim() }}", "type": "string" }, { "id": "4a388c36-5a41-48ef-b998-38734827f56e", "name": "MySQL Status", "value": "={{ $json.ServiceStatus.split('\\n')[1].trim() }}", "type": "string" }, { "id": "d6d59af7-157a-481a-ace3-5361b17f390f", "name": "PHP_FPM", "value": "={{ $json.ServiceStatus.split('\\n')[2].trim() }}", "type": "string" }, { "id": "392ff3e0-b7b6-48dd-b759-49701b895a4e", "name": "CPU Status", "value": "={{ $json.CPU }}", "type": "string" }, { "id": "3a928756-860c-4e77-971b-75abee91d933", "name": "Disk Status", "value": "={{ $json.Disk }}", "type": "string" }, { "id": "93485443-3858-4868-a032-b9dc1a4be319", "name": "Average", "value": "={{ $('Check Average').item.json.stdout }}", "type": "string" }, { "id": "96e03619-fa91-4025-9628-63a3be3c19c7", "name": "Inode", "value": "={{ $json.Inode }}", "type": "string" }, { "id": "693bb184-804f-4ffe-8337-cc66ccac1e51", "name": "RAM", "value": "={{ $json.RAM }}", "type": "string" } ] }, "options": {} }, "type": "n8n-nodes-base.set", "typeVersion": 3.4, "position": [ -820, 100 ], "id": "cd6b41c9-6a0b-44ca-8100-55547646ab52", "name": "Edit Result Check Service" }, { "parameters": { "mode": "combineBySql", "numberInputs": 6, "query": "SELECT\n  input1.stdout AS CPU,\n  input2.stdout AS Disk,\n  input3.stdout AS RAM,\n  input4.stdout AS LoadAverage,\n  input5.stdout AS Inode,\n  input6.stdout AS ServiceStatus\nFROM input1\nLEFT JOIN input2 ON true\nLEFT JOIN input3 ON true\nLEFT JOIN input4 ON true\nLEFT JOIN input5 ON true\nLEFT JOIN input6 ON true" }, "id": "abfcd5b9-2502-47a3-a19d-c58d5db9d519", "name": "Merge check results", "type": "n8n-nodes-base.merge", "position": [ -1100, 40 ], "typeVersion": 3 }, { "parameters": { "jsCode": "const data = $json;\n\n// 1. Ngưỡng cảnh báo cho tài nguyên\nconst threshold = {\n  \"CPU Status\": 90,\n  \"RAM\": 90,\n  \"Disk Status\": 80,\n  \"Average\" : 1,\n  \"Inode\": 90\n};\n\n// 2. Các service cần check \"active/inactive\"\nconst services = [\n  \"Nginx Status \",\n  \"MySQL Status\",\n  \"PHP_FPM\"\n];\n\nlet msg = '⚠️ *System Alert:*\\n';\nlet alert = false;\n\n// Kiểm tra vượt ngưỡng\nfor (const key in threshold) {\n  const value = parseFloat(data[key]);\n\n  if (!isNaN(value) && value >= threshold[key]) {\n    alert = true;\n    msg += `- ${key} đang cao: ${value}% \\n`;\n  }\n}\n\n// Kiểm tra trạng thái dịch vụ\nfor (const service of services) {\n  const status = (data[service] || \"\").toLowerCase().trim();\n  if (status === \"inactive\") {\n    alert = true;\n    msg += `- ${service.trim()} đang ở trang thái *inactive* ❌\\n`;\n  }\n}\n\nif (!alert) {\n  return []; // Không có cảnh báo → không gửi tiếp\n}\n\nreturn [\n  {\n    json: {\n      message: msg\n    }\n  }\n];" }, "type": "n8n-nodes-base.code", "typeVersion": 2, "position": [ -560, 100 ], "id": "3e9f5628-3099-458d-a71a-ec21217606ed", "name": "Code" }, { "parameters": { "authentication": "webhook", "content": "={{$json[\"message\"]}}", "options": {} }, "type": "n8n-nodes-base.discord", "typeVersion": 2, "position": [ -280, 100 ], "id": "76c0b7b6-5979-48c5-819d-cded66609a38", "name": "Alert Discord", "webhookId": "01b767d1-48f3-457e-9426-caf5892a13b2", "credentials": { "discordWebhookApi": { "id": "vYU2ovSkuEHcdKiB", "name": "Discord Webhook account" } } } ], "pinData": {}, "connections": { "Check CPU usage": { "main": [ [ { "node": "Check inode Usage", "type": "main", "index": 0 }, { "node": "Merge check results", "type": "main", "index": 0 } ] ] }, "Check RAM usage": { "main": [ [ { "node": "Check Disk usage", "type": "main", "index": 0 }, { "node": "Merge check results", "type": "main", "index": 2 } ] ] }, "Check Disk usage": { "main": [ [ { "node": "Check Average", "type": "main", "index": 0 }, { "node": "Merge check results", "type": "main", "index": 1 } ] ] }, "Check Service": { "main": [ [ { "node": "Merge check results", "type": "main", "index": 5 } ] ] }, "Check inode Usage": { "main": [ [ { "node": "Check RAM usage", "type": "main", "index": 0 }, { "node": "Merge check results", "type": "main", "index": 4 } ] ] }, "Check Average": { "main": [ [ { "node": "Check Service", "type": "main", "index": 0 }, { "node": "Merge check results", "type": "main", "index": 3 } ] ] }, "Trigger Check System": { "main": [ [ { "node": "Check CPU usage", "type": "main", "index": 0 } ] ] }, "Edit Result Check Service": { "main": [ [ { "node": "Code", "type": "main", "index": 0 } ] ] }, "Merge check results": { "main": [ [ { "node": "Edit Result Check Service", "type": "main", "index": 0 } ] ] }, "Code": { "main": [ [ { "node": "Alert Discord", "type": "main", "index": 0 } ] ] }, "Alert Discord": { "main": [ [] ] } }, "active": false, "settings": { "executionOrder": "v1" }, "versionId": "ec2c9267-6a37-4900-a506-1c37e04ed13b", "meta": { "templateCredsSetupCompleted": true, "instanceId": "3ccf4ecd0404b7fa314448bdbf1ad0285178274f152b93d738dc0c826690b592" }, "id": "pFVS79o2vpqIpjR2", "tags": [] }
 ```
@@ -33,7 +33,7 @@ Sử dụng gửi lệnh Command Line đến VPS để lấy các giá trị nh�
 - Trigger: Cho chạy mỗi 5 phút 1 lần
 - Sau đó ta gửi các command để lấy các thông tin của hệ thống để so sánh
 
-##### Check CPU
+### Check CPU
 Logic: Ở đây ta lấy CPU không hoạt động sau đó lấy 100 - số CPU không hoạt động sẽ ra CPU đang sử dụng. Ta chạy lệnh 5 lần lưu lại với 5 biến ở mỗi lần ta dùng lệnh sleep để giãn cách thời gian sau đó mỗi lệnh chạy trong > 1 phút chạy lệnh sleep trong 4 lần nếu cả 5 giá trị của biến đều lớn hơn 90 sẽ được tính là CPU vượt quá 90%. Ngược lại nếu 1 trong 5 lần không vượt quá 90  nghĩa là trong vòng 5 phút load CPU không luôn luôn quá 90 và sẽ không gửi message  
 Note Ở các lệnh echo bị command
 ```
@@ -58,26 +58,26 @@ else
     echo 0
 fi
 ```
-##### Check Inode Usage
+### Check Inode Usage
 ```
  df -ih | awk '$NF=="/"{printf "%.2f", $5}'
 ```
   Hiện thị inode theo dạng con người có thể đọc và lấy dòng có ký tự cuối cùng là / lấy cột thứ 5 của dòng đó (là cột % Usage) sau đó in ra giá trị  của inode đang sử dụng
 
-#####  Check RAM  
+###  Check RAM  
 ```
 free | awk '/Mem:/ {printf "%.2f", (1 - $7/$2) * 100}'
 ```
 
 Lấy giá trị Memory đang sử dụng bằng cách lấy 1 - (avaiable/ total) * 100 phần trăm sau đó làm tròn đến chữ số thập phân số 2
 
-##### Check Disk
+### Check Disk
 ```
 df -h | awk '$NF=="/"{printf "%.2f", $5}'
 ```
 Tương tự ta lấy cột Used (cột số 5) ở dòng có kí tự cuối cùng là /
 
-##### Check Average 
+### Check Average 
 Nếu số node lớn hơn số core thì sẽ được tính là tải cao
 ```
 #!/bin/bash
@@ -99,7 +99,7 @@ else
 fi
 ```
 - Ở các node Điều kiện IF và Discord sẽ là kiểm tra theo điều kiện cho trước mà nếu match thì sẽ gửi message. Việc N8N và Discord sẽ giao tiếp qua webhook của Discord
-##### Check Status Service
+### Check Status Service
 - ta gửi đoạn command sau
 ```
 #!/bin/bash
