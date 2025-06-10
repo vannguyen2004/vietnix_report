@@ -125,15 +125,17 @@ Dùng dễ chia tác và xóa khoản trắng dữ liệu
 ### Sử dụng node code 
 Xữ lí điều kiện nếu các giá trị vượt mức cho phép sẽ tạo mess sau đó đẫy cho discord  
 Code xữ lí như sau:
-const data = $json;
+
 ```
+const data = $json;
+
 // 1. Ngưỡng cảnh báo cho tài nguyên
 const threshold = {
   "CPU Status": 90,
   "RAM": 90,
   "Disk Status": 80,
-  "Average" : 1,
-  "Inode": 90
+  "Inode": 90,
+  "Average": 1  
 };
 
 // 2. Các service cần check "active/inactive"
@@ -152,7 +154,7 @@ for (const key in threshold) {
 
   if (!isNaN(value) && value >= threshold[key]) {
     alert = true;
-    msg += `- ${key} đang cao: ${value}% \n`;
+    msg += `- ${key} đang cao: ${value} `;
   }
 }
 
@@ -161,7 +163,7 @@ for (const service of services) {
   const status = (data[service] || "").toLowerCase().trim();
   if (status === "inactive") {
     alert = true;
-    msg += `- ${service.trim()} đang ở trang thái *inactive* ❌\n`;
+    msg += `- ${service.trim()} đang *inactive* ❌\n`;
   }
 }
 
@@ -176,6 +178,7 @@ return [
     }
   }
 ];
+
 ```
 ### Node Discord
 Ta truyền vào mess của node code trước đó
