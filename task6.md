@@ -21,13 +21,14 @@ Trong Workflow hiện tại đang chia ra thành 2 workflow nhỏ hơn là:
 - Một workflow sẽ check các thông tin của hệ thống như CPU, RAM, DISK, Load Average, Inode sẽ được kiểm tra 5 phút 1 lần
 ### Một số node được sử dụng trong bài LAB
 
-![26](https://github.com/user-attachments/assets/3e848312-be71-4bd1-8437-73a319de690a)
+![28](https://github.com/user-attachments/assets/d2b0faae-d4fa-4d35-b04f-3e7bc13e1f1b)
+
 
 
 - Trigger: **On a Schedule** sử dung để chạy workflow tự động theo thời gian hoặc chu kỳ.
 - Node **SSH** với Action **Execute a command** để gửi command line thông qua SSH (có thể dùng key hoặc password)
 - Node Edit Fields dùng để lọc chỉnh sửa các character sau kết quả trả về từ SSH
-- Node điều kiện (IF) dùng để so sánh các thông tin của VPS với các thông số mà ta thiết lập sẵn trước đó nếu khớp sẽ gửi thông tin đến Discord
+- Node code để so sánh các giá trị lấy được từ SSH Command và giá trị đặt trước
 - Node Discord dùng để gửi message đến discord thông qua Webhook
 
 
@@ -117,9 +118,9 @@ Mục đích để lấy trạng thái các dịch vụ xem là **inactive** hay
 
 ![3](https://github.com/user-attachments/assets/fcf04828-3b68-4ee4-bb9a-e60dbd9a2777)
 
-- Tuy nhiên output ra là một chuỗi phân cách bởi ký tự xuống dòng (\n) nên ta dùng node **edit fields** để tách lấy các giá trị
+##### Sử dụng node Merger
+Mục đích để gom Input từ các node trước đó để dễ sử lí
 
-![4](https://github.com/user-attachments/assets/b5d08ae7-f8b8-4aa3-91f2-b3727639717b)
 
  Ta đặt tên cho từng dịch vụ để dễ phân biệt Nginx Status, MySQL Status, PHP-FPM Status
  Về phần giá trị ta lấy stdout ở node SSH Command dùng hàm split() để chia chuổi thành mảng và lấy phần tử đầu tiên bắt đầu bằng 0 sau đó để chắc chắn các giá trị không bị dính khoảng trắng ta dùng hàm trim() để loại bỏ tất cả dấu cách ở trước và sau. Tương tư với MySQL Status và PHP-FPM Status. Cuối cùng ta được một Array chứa Object bên trong
