@@ -141,12 +141,23 @@ Ta bật tất cả các Service cần kiểm tra sau đó từ từ tắt đó 
 
 ![13](https://github.com/user-attachments/assets/2976b128-65a2-4c0f-9b4f-0147c60576b6)
 ![14](https://github.com/user-attachments/assets/0bd793e6-5331-4e80-bef7-fb78af1329ad)
-![14](https://github.com/user-attachments/assets/ca8a1671-09b4-4952-9610-bf476d5196a4)
 
 ### Kiểm tra resource của hệ thống
 
-Check disk
-![15](https://github.com/user-attachments/assets/bbe2fba0-49f9-4d25-b78d-bcf95d5921ec)
+##### Check disk
+![15](https://github.com/user-attachments/assets/c2a7246d-8c77-456d-be7c-2e0c2de7f10a)
+![16](https://github.com/user-attachments/assets/c9f043d1-9d8f-4b24-bd05-c252d50797f3)
+
+##### Check RAM 
+![18](https://github.com/user-attachments/assets/facb884d-e5d4-4f90-b8b0-d3fd5151298f)
+![19](https://github.com/user-attachments/assets/c30bc24f-8bfd-4ef2-a352-26f8f84bfb8b)
+
+##### Check CPU và Load Average
+
+
+
+
+
 
 
 
