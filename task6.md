@@ -181,28 +181,15 @@ return [
 Ta truyền vào mess của node code trước đó
 ![30](https://github.com/user-attachments/assets/0bd47f43-644f-4bd1-9f0d-6177f16ac5d3)
 
-
-
 # Kiểm tra 
-### Kiểm tra các service của hệ thống
+- Tắt dịch vụ nginx, stress test đĩa cao, CPU, Load Average cao
 
-![27](https://github.com/user-attachments/assets/e6cbb3f7-fe04-4bfc-b355-83cf670f6af5)
+![31](https://github.com/user-attachments/assets/300c173a-8648-4f5a-926d-0e6a9af932a8)
+![32](https://github.com/user-attachments/assets/f2841b41-c967-4dbf-830e-2fe8e6bc030e)
 
+- Kiểm tra discord:
 
-### Kiểm tra resource của hệ thống
-
-##### Check disk
-![15](https://github.com/user-attachments/assets/c2a7246d-8c77-456d-be7c-2e0c2de7f10a)
-![16](https://github.com/user-attachments/assets/c9f043d1-9d8f-4b24-bd05-c252d50797f3)
-
-##### Check RAM 
-![18](https://github.com/user-attachments/assets/facb884d-e5d4-4f90-b8b0-d3fd5151298f)
-![19](https://github.com/user-attachments/assets/c30bc24f-8bfd-4ef2-a352-26f8f84bfb8b)
-
-##### Check COU và Load Average
-
-![22](https://github.com/user-attachments/assets/b0d145c9-0211-4450-8c66-ab529a170394)
-![23](https://github.com/user-attachments/assets/00da0c1f-b5ee-4897-9cad-099bff54b353)
+![33](https://github.com/user-attachments/assets/d4593698-1a8c-4e4d-a836-0d550ec77490)
 
 
 
