@@ -129,33 +129,54 @@ Code xữ lí như sau:
 ```
 const data = $json;
 
-// 1. Ngưỡng cảnh báo cho tài nguyên
-const threshold = {
-  "CPU Status": 90,
-  "RAM": 90,
-  "Disk Status": 80,
-  "Inode": 90,
-  "Average": 1  
-};
-
-// 2. Các service cần check "active/inactive"
+// 1. Các service cần check "active/inactive"
 const services = [
   "Nginx Status ",
   "MySQL Status",
   "PHP_FPM"
 ];
 
-let msg = '⚠️ *System Alert:*\n';
+let msg = '⚠️ *Cảnh báo:*\n';
 let alert = false;
 
-// Kiểm tra vượt ngưỡng
-for (const key in threshold) {
-  const value = parseFloat(data[key]);
-
-  if (!isNaN(value) && value >= threshold[key]) {
+// 🔧 Tùy chỉnh riêng từng loại tài nguyên
+const diskUsage = parseFloat(data["Disk Status"]);
+if (!isNaN(diskUsage)) {
+  if (diskUsage >= 90) {
     alert = true;
-    msg += `- ${key} đang cao: ${value} `;
+    msg += `- 🔴 Dung lượng đĩa đang rất cao: ${diskUsage} % \n`;
+  } else if (diskUsage > 80) {
+    alert = true;
+    msg += `- 🟡 Dung lượng đĩa đang khá cao: ${diskUsage} % \n`;
   }
+}
+
+// 👉 Tùy chỉnh thêm nếu muốn (ví dụ CPU)
+const cpuUsage = parseFloat(data["CPU Status"]);
+if (!isNaN(cpuUsage) && cpuUsage >= 90) {
+  alert = true;
+  msg += `- 🔴 CPU đang quá tải: ${cpuUsage} % \n`;
+}
+
+// 👉 RAM
+const ramUsage = parseFloat(data["RAM"]);
+if (!isNaN(ramUsage) && ramUsage >= 90) {
+  alert = true;
+  msg += `- 🔴 RAM đang quá tải: ${ramUsage} % \n`;
+}
+
+// 👉 Inode
+const inodeFree = parseFloat(data["Inode"]);
+if (!isNaN(inodeFree) && inodeFree > 2) {
+  alert = true;
+  msg += `- 🔴 Inode còn rất thấp, hiện đang sử dụng: ${inodeFree} % \n`;
+}
+
+// 👉 Load Average
+const loadAvg = parseFloat(data["Average"]);
+if (!isNaN(loadAvg) && loadAvg > 1) {
+  alert = true;
+  msg += `- 🔴 Load Average trong 5 phút vừa qua đang cao: ${loadAvg} \n`;
 }
 
 // Kiểm tra trạng thái dịch vụ
@@ -163,7 +184,7 @@ for (const service of services) {
   const status = (data[service] || "").toLowerCase().trim();
   if (status === "inactive") {
     alert = true;
-    msg += `- ${service.trim()} đang *inactive* ❌\n`;
+    msg += `- 🔴 ${service.trim()} đang *inactive* ❌\n`;
   }
 }
 
@@ -179,6 +200,7 @@ return [
   }
 ];
 
+
 ```
 ### Node Discord
 Ta truyền vào mess của node code trước đó
@@ -190,16 +212,17 @@ Ta truyền vào mess của node code trước đó
 ![31](https://github.com/user-attachments/assets/300c173a-8648-4f5a-926d-0e6a9af932a8)
 ![32](https://github.com/user-attachments/assets/f2841b41-c967-4dbf-830e-2fe8e6bc030e)
 
-- Kiểm tra discord:
 
 ![33](https://github.com/user-attachments/assets/d4593698-1a8c-4e4d-a836-0d550ec77490)
 
 - Kiểm tra RAM
+
 ![34](https://github.com/user-attachments/assets/b27afce5-c765-4502-aa5f-cddafab25140)
 ![35](https://github.com/user-attachments/assets/886de5a2-9244-4b6b-8c10-b9bbe685d028)
+- Kiểm tra inode (đã giảm mức inode xuống nếu > 2% sẽ gửi cảnh báo)
 
-
-
+![36](https://github.com/user-attachments/assets/e2971cd8-426d-446b-8116-229ed2f1dc60)
+![37](https://github.com/user-attachments/assets/1aa8fa07-bb01-4c37-91a4-70813ab2d92c)
 
 
 
