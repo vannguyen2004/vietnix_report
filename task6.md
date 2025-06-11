@@ -207,22 +207,7 @@ Ta truyền vào mess của node code trước đó
 ![30](https://github.com/user-attachments/assets/0bd47f43-644f-4bd1-9f0d-6177f16ac5d3)
 
 # Kiểm tra 
-- Tắt dịch vụ nginx, stress test đĩa cao, CPU, Load Average cao
-
-![31](https://github.com/user-attachments/assets/300c173a-8648-4f5a-926d-0e6a9af932a8)
-![32](https://github.com/user-attachments/assets/f2841b41-c967-4dbf-830e-2fe8e6bc030e)
-
-
-![33](https://github.com/user-attachments/assets/d4593698-1a8c-4e4d-a836-0d550ec77490)
-
-- Kiểm tra RAM
-
-![34](https://github.com/user-attachments/assets/b27afce5-c765-4502-aa5f-cddafab25140)
-![35](https://github.com/user-attachments/assets/886de5a2-9244-4b6b-8c10-b9bbe685d028)
-- Kiểm tra inode (đã giảm mức inode xuống nếu > 2% sẽ gửi cảnh báo)
-
-![36](https://github.com/user-attachments/assets/e2971cd8-426d-446b-8116-229ed2f1dc60)
-![37](https://github.com/user-attachments/assets/1aa8fa07-bb01-4c37-91a4-70813ab2d92c)
+![38](https://github.com/user-attachments/assets/c5cf2b04-3e2b-41c0-8c95-ff646d90e231)
 
 
 
