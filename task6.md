@@ -110,17 +110,13 @@ echo $check_mysql
 check_php_fpm=$(systemctl is-active php-fpm | awk "{print $1}")
 echo $check_php_fpm   
 ```
-
 Mục đích để lấy trạng thái các dịch vụ xem là **inactive** hay **active**
 
-![3](https://github.com/user-attachments/assets/fcf04828-3b68-4ee4-bb9a-e60dbd9a2777)
-
-
 ### Sử dụng node Edit Field 
-Dùng dễ chia tác và xóa khoản trắng dữ liệu
+Dùng dễ chia tác và xóa khoảng trắng dữ liệu
 ### Sử dụng node code 
 Xữ lí điều kiện nếu các giá trị vượt mức cho phép sẽ tạo mess sau đó đẫy cho discord  
-Code xữ lí như sau:
+Code xữ lý như sau:
 
 ```
 const data = $json;
