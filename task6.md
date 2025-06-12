@@ -196,7 +196,8 @@ return [
 ```
 ### Node Discord
 Ta truyền vào mess của node code trước đó
-![30](https://github.com/user-attachments/assets/0bd47f43-644f-4bd1-9f0d-6177f16ac5d3)
+![41](https://github.com/user-attachments/assets/dbcd8efe-f25d-45a7-8a03-9fc26002a0b3)
+
 
 # Kiểm tra 
 ![38](https://github.com/user-attachments/assets/c5cf2b04-3e2b-41c0-8c95-ff646d90e231)
