@@ -18,8 +18,7 @@
 Sử dụng gửi lệnh Command Line đến VPS để lấy các giá trị như trang thái dịch vụ (nginx, mysql, php-fpm), thông tin RAM, DISK, CPU, Inode, Load Average. Sau đó ta so sánh với các giá trị cho trước nếu vượt qua sẽ gửi thông tin đến Discord. Chạy Workflow 5 phút một lần
 ### Một số node được sử dụng trong bài LAB
 
-![28](https://github.com/user-attachments/assets/d2b0faae-d4fa-4d35-b04f-3e7bc13e1f1b)
-
+![39](https://github.com/user-attachments/assets/4ae72ddc-0c6c-4e8b-9311-7ba1f9dae12b)
 
 
 - Trigger: **On a Schedule** sử dung để chạy workflow tự động theo thời gian hoặc chu kỳ.
@@ -116,9 +115,6 @@ Mục đích để lấy trạng thái các dịch vụ xem là **inactive** hay
 
 ![3](https://github.com/user-attachments/assets/fcf04828-3b68-4ee4-bb9a-e60dbd9a2777)
 
-### Sử dụng node Merger
-Mục đích để gom Input từ các node trước đó để dễ sử lý
-![29](https://github.com/user-attachments/assets/dc7f2d1e-dc11-422e-bc67-1e98a787d0e5)
 
 ### Sử dụng node Edit Field 
 Dùng dễ chia tác và xóa khoản trắng dữ liệu
