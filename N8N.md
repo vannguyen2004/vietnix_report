@@ -22,5 +22,121 @@ Khi phát hiện bất kỳ chỉ số nào vượt quá ngưỡng cảnh báo, 
 
 ### Các bước triển khai
 1. Đầu tiên các bản hay copy đoạn code ở trên sau đó tạo workflow mới trong n8n rồi paste vào nhé
+![image](https://github.com/user-attachments/assets/7804ce04-3ab5-4d26-bda0-626b3b09c86b)
 
-2. 
+2. Tôi sẽ giải thích từng node trong này nhé  
+a. **Node Trigger Check System**  
+Ở node này sẽ là thời gian mà bạn chạy workflow giám xác hệ thống. Có thể chạy 2 phút một lần, 5 phút một lần, hay 10 phút một lần,...Tuy nhiên tôi khuyên bạn không nên để thời gian quá xa vì hệ thống có thể gặp vấn đề mà bạn không thể phát hiện kịp thời
+![image](https://github.com/user-attachments/assets/1bb569e8-766b-4431-909f-ac02c706b8c9)
+
+b. **Check System**
+Node này dùng để gửi các Command đến máy chủ được giám sát để lấy thông tin CPU, RAM, DISK, Inode, Load Average và các dịch vụ như Nginx MySQL, PHP-FPM  
+Nhưng trước tiên bạn phải thêm Thông tin xác thực vào nhé
+
+![image](https://github.com/user-attachments/assets/2ef8eaa2-4526-413d-984e-8b5555e3a29e)
+
+Sẽ có 2 Option để bạn xác thực với máy chủ: Password và Private Key
+Bạn điền các thông tin:
+- Host: Là địa chỉ IP của máy chủ của bạn
+- Port kết nối: 22 (Nếu bạn thay đổi trên VPS cũng cần phải thay đổi ở đây nhé)
+- Username: Điền tên user truy cập của bạn
+- Password: Nhập password đăng nhập của user ở trên
+
+![image](https://github.com/user-attachments/assets/bbe888e3-27bd-4f1f-866f-7cfacda2396c)
+
+Trong trường hợp bạn dùng Private Key, bạn cũng nhập thông tin như:
+- Host
+- Port
+- Username
+- Private key: Là Private key trong key pair mà bạn đã tạo ra
+- Passphrase: Bạn điền Passphrase của key (nếu có)
+![image](https://github.com/user-attachments/assets/0873014b-3901-41cd-8969-5cb34ab0254c)
+Tiếp theo tôi sẽ giải tích đoạn command được gửi đi trong node này
+```
+#!/bin/bash
+CHECK_ONE=$(top -bn 1 | grep "Cpu(s)" | sed "s/.*, *\([0-9.]*\)%* id.*/\1/" | awk '{print 100 - $1}')
+#echo $CHECK_ONE
+sleep 70s
+CHECK_TWO=$(top -bn 1 | grep "Cpu(s)" | sed "s/.*, *\([0-9.]*\)%* id.*/\1/" | awk '{print 100 - $1}')
+#echo $CHECK_TWO
+sleep 70s
+CHECK_THREE=$(top -bn 1 | grep "Cpu(s)" | sed "s/.*, *\([0-9.]*\)%* id.*/\1/" | awk '{print 100 - $1}')
+#echo $CHECK_THREE
+sleep 70s
+CHECK_FOUR=$(top -bn 1 | grep "Cpu(s)" | sed "s/.*, *\([0-9.]*\)%* id.*/\1/" | awk '{print 100 - $1}')
+#echo $CHECK_FOUR
+sleep 70s
+CHECK_FIVE=$(top -bn 1 | grep "Cpu(s)" | sed "s/.*, *\([0-9.]*\)%* id.*/\1/" | awk '{print 100 - $1}')
+#echo $CHECK_FIVE
+if (( $(echo "$CHECK_ONE > 90" | bc -l) )) && \
+   (( $(echo "$CHECK_TWO > 90" | bc -l) )) && \
+   (( $(echo "$CHECK_THREE > 90" | bc -l) )) && \
+   (( $(echo "$CHECK_FOUR > 90" | bc -l) )) && \
+   (( $(echo "$CHECK_FIVE > 90" | bc -l) )); then
+
+    echo $CHECK_FIVE
+else
+    echo 0
+fi
+df -ih | awk '$NF=="/"{printf "%.2f\n", $5}'
+df -h | awk '$NF=="/"{printf "%.2f\n", $5}'
+free | awk '/Mem:/ {printf "%.2f\n", (1 - $7/$2) * 100}'
+
+# Lấy số core CPU
+cores=$(nproc)
+# Lấy load average 1 phút
+load1=$(awk '{print $2}' /proc/loadavg)
+# So sánh
+threshold=$(echo "$cores * 1.0" | bc)  # cho phép 100% CPU load
+# In thông báo
+if (( $(echo "$load1 > $threshold" | bc -l) )); then
+    echo $load1
+else
+    echo 0
+fi
+check_nginx=$(systemctl is-active nginx | awk "{print $1}")
+echo $check_nginx
+check_mysql=$(systemctl is-active mysql | awk "{print $1}")
+echo $check_mysql
+check_php_fpm=$(systemctl is-active php8.1-fpm | awk "{print $1}")
+echo $check_php_fpm
+``` 
+
+
+Kiểm tra Inode usage
+```
+df -ih | awk '$NF=="/"{printf "%.2f\n", $5}'
+```
+- df -ih: xem inode usage theo định dạng human-readable
+- Lọc phân vùng gốc /
+- In phần trăm inode đang dùng
+
+Kiểm tra Disk usage
+```
+df -h | awk '$NF=="/"{printf "%.2f\n", $5}'
+```
+Tuơng tự như kiểm tra Inode nhưng lần này sẽ kiểm tra đĩa  
+
+Kiểm tra RAM usage
+```
+free | awk '/Mem:/ {printf "%.2f\n", (1 - $7/$2) * 100}'
+```
+- free: kiểm tra bộ nhớ
+- $2: tổng RAM
+- $7: RAM còn trống (available)
+- Tính RAM đã dùng = 100 - available/tổng
+
+Kiểm tra Load Average
+```
+cores=$(nproc)
+load1=$(awk '{print $2}' /proc/loadavg)
+threshold=$(echo "$cores * 1.0" | bc)
+```
+- nproc: lấy số core CPU
+- load1: lấy giá trị load trung bình trong 1 phút
+- Nếu load1 > số core, nghĩa là CPU đang bị quá tải
+Kiểm tra trạng thái dịch vụ
+```
+check_nginx=$(systemctl is-active nginx)
+echo $check_nginx
+```
