@@ -134,7 +134,7 @@ threshold=$(echo "$cores * 1.0" | bc)
 ```
 - nproc: lấy số core CPU
 - load1: lấy giá trị load trung bình trong 1 phút
-- Nếu load1 > số core, nghĩa là CPU đang bị quá tải
+- Nếu load1 > số core, nghĩa là CPU đang bị quá tải  
 Kiểm tra trạng thái dịch vụ
 ```
 check_nginx=$(systemctl is-active nginx)
