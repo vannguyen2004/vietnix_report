@@ -107,7 +107,7 @@ echo $check_mysql
 check_php_fpm=$(systemctl is-active php8.1-fpm | awk "{print $1}")
 echo $check_php_fpm
 ```
-**Kiểmtra CPU**
+**Kiểm tra CPU**
 ```
 CHECK_ONE=$(top -bn 1 | grep "Cpu(s)" | sed "s/.*, *\([0-9.]*\)%* id.*/\1/" | awk '{print 100 - $1}')
 #echo $CHECK_ONE
