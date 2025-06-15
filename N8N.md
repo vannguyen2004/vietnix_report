@@ -35,8 +35,8 @@ a. **Node Trigger Check System**
 Ở node này sẽ là thời gian mà bạn chạy workflow giám xác hệ thống. Có thể chạy 2 phút một lần, 5 phút một lần, hay 10 phút một lần,...Tuy nhiên tôi khuyên bạn không nên để thời gian quá xa vì hệ thống có thể gặp vấn đề mà bạn không thể phát hiện kịp thời
 ![image](https://github.com/user-attachments/assets/1bb569e8-766b-4431-909f-ac02c706b8c9)
 
-b. **Check System**
-Node này dùng để gửi các Command đến máy chủ được giám sát để lấy thông tin CPU, RAM, DISK, Inode, Load Average và các dịch vụ như Nginx MySQL, PHP-FPM  
+b. **Check System**  
+Node này dùng để gửi các Command đến máy chủ được giám sát để lấy thông tin CPU, RAM, DISK, Inode, Load Average và các dịch vụ như Nginx MySQL, PHP-FPM    
 Nhưng trước tiên bạn phải thêm Thông tin xác thực vào nhé
 
 ![image](https://github.com/user-attachments/assets/2ef8eaa2-4526-413d-984e-8b5555e3a29e)
@@ -106,10 +106,37 @@ check_mysql=$(systemctl is-active mysql | awk "{print $1}")
 echo $check_mysql
 check_php_fpm=$(systemctl is-active php8.1-fpm | awk "{print $1}")
 echo $check_php_fpm
-``` 
+```
+**Kiểmtra CPU**
+```
+CHECK_ONE=$(top -bn 1 | grep "Cpu(s)" | sed "s/.*, *\([0-9.]*\)%* id.*/\1/" | awk '{print 100 - $1}')
+#echo $CHECK_ONE
+sleep 70s
+CHECK_TWO=$(top -bn 1 | grep "Cpu(s)" | sed "s/.*, *\([0-9.]*\)%* id.*/\1/" | awk '{print 100 - $1}')
+#echo $CHECK_TWO
+sleep 70s
+CHECK_THREE=$(top -bn 1 | grep "Cpu(s)" | sed "s/.*, *\([0-9.]*\)%* id.*/\1/" | awk '{print 100 - $1}')
+#echo $CHECK_THREE
+sleep 70s
+CHECK_FOUR=$(top -bn 1 | grep "Cpu(s)" | sed "s/.*, *\([0-9.]*\)%* id.*/\1/" | awk '{print 100 - $1}')
+#echo $CHECK_FOUR
+sleep 70s
+CHECK_FIVE=$(top -bn 1 | grep "Cpu(s)" | sed "s/.*, *\([0-9.]*\)%* id.*/\1/" | awk '{print 100 - $1}')
+#echo $CHECK_FIVE
+if (( $(echo "$CHECK_ONE > 90" | bc -l) )) && \
+   (( $(echo "$CHECK_TWO > 90" | bc -l) )) && \
+   (( $(echo "$CHECK_THREE > 90" | bc -l) )) && \
+   (( $(echo "$CHECK_FOUR > 90" | bc -l) )) && \
+   (( $(echo "$CHECK_FIVE > 90" | bc -l) )); then
 
+    echo $CHECK_FIVE
+else
+    echo 0
+fi
+```
+- Ta tiến hành kiểm tra CPU trong vòng 5 phút và lưu lại bằng 5 biến **CHECK_ONE**, **CHECK_TWO**,.... sau đó ta so sánh nếu cả 5 lần CPU đều cao hơn 90% nghĩa là trong 5 phút vừa qua CPU lúc nào cũng cao hơn 90%  và in ra kết quả
 
-Kiểm tra Inode usage
+**Kiểm tra Inode usage**
 ```
 df -ih | awk '$NF=="/"{printf "%.2f\n", $5}'
 ```
@@ -117,13 +144,13 @@ df -ih | awk '$NF=="/"{printf "%.2f\n", $5}'
 - Lọc phân vùng gốc /
 - In phần trăm inode đang dùng
 
-Kiểm tra Disk usage
+**Kiểm tra Disk usage**
 ```
 df -h | awk '$NF=="/"{printf "%.2f\n", $5}'
 ```
 Tuơng tự như kiểm tra Inode nhưng lần này sẽ kiểm tra đĩa  
 
-Kiểm tra RAM usage
+**Kiểm tra RAM usage**
 ```
 free | awk '/Mem:/ {printf "%.2f\n", (1 - $7/$2) * 100}'
 ```
@@ -132,7 +159,7 @@ free | awk '/Mem:/ {printf "%.2f\n", (1 - $7/$2) * 100}'
 - $7: RAM còn trống (available)
 - Tính RAM đã dùng = 100 - available/tổng
 
-Kiểm tra Load Average
+**Kiểm tra Load Average**
 ```
 cores=$(nproc)
 load1=$(awk '{print $2}' /proc/loadavg)
@@ -141,7 +168,7 @@ threshold=$(echo "$cores * 1.0" | bc)
 - nproc: lấy số core CPU
 - load1: lấy giá trị load trung bình trong 1 phút
 - Nếu load1 > số core, nghĩa là CPU đang bị quá tải  
-Kiểm tra trạng thái dịch vụ
+**Kiểm tra trạng thái dịch vụ**
 ```
 check_nginx=$(systemctl is-active nginx)
 echo $check_nginx
@@ -151,7 +178,7 @@ c. **Node Edit Result Check**
 Sau khi Node **Check System** thực thi thành công. Output sẽ trả về 1 item kiếu **string** nên ta cần phải tách ra và so sánh kết quả với điều kiện. Như sau:  
 ![image](https://github.com/user-attachments/assets/b1a2f103-5acc-41a7-8510-1d4667b7f7fe)
 
-Node này sẽ chia các mảng này ra thành mảng sau đó lấy lần lượt kết quả các phần tử, dùng hàm trim() để xóa các khoảng trắng trước, sau và gán vào bằng một tên như **CPU Status**, **Inode**, **Disk Status** ,... *Lưu ý thứ tự sẽ phải sắp xếp đúng với Node trước nhé nếu không sẽ xãy ra hiện tượng lấy kết quả của CPU so sánh điều kiện của RAM*
+Node này sẽ chia các mảng này ra thành mảng sau đó lấy lần lượt kết quả các phần tử, dùng hàm trim() để xóa các khoảng trắng trước, sau và gán vào bằng một tên như **CPU Status**, **Inode**, **Disk  Status** ,... *Lưu ý thứ tự sẽ phải sắp xếp đúng với Node trước nhé nếu không sẽ xãy ra hiện tượng lấy kết quả của CPU so sánh điều kiện của RAM*  
 ![image](https://github.com/user-attachments/assets/18089d4c-b781-4fd6-8f32-482faccd1ecb)
 
 d. **Node Code**  
