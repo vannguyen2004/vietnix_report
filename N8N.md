@@ -19,7 +19,13 @@ Trạng thái hoạt động của các dịch vụ quan trọng như:
 - mysql hoặc mariadb
 
 Khi phát hiện bất kỳ chỉ số nào vượt quá ngưỡng cảnh báo, workflow sẽ gửi thông báo tức thì về Discord thông qua webhook, giúp quản trị viên chủ động phát hiện sớm và xử lý sự cố kịp thời
-
+### Các mức cảnh báo như sau
+- Gửi cảnh báo khi CPU server vượt 90% trong 5 phút.
+- Gửi cảnh báo khi RAM server còn trống dưới 10%.
+- Gửi cảnh báo khi dung lượng ổ cứng còn trống dưới 20% (cảnh báo) dưới 10% (cảnh báo khẩn cấp)
+- Gửi cảnh báo  inode usage > 90%. 
+- Gửi cảnh báo khi server load average tăng cao bất thường.
+- Gửi cảnh báo khi một dịch vụ quan trọng (Nginx, MySQL, PHP-FPM) bị dừng.
 ### Các bước triển khai
 1. Đầu tiên các bản hay copy đoạn code ở trên sau đó tạo workflow mới trong n8n rồi paste vào nhé
 ![image](https://github.com/user-attachments/assets/7804ce04-3ab5-4d26-bda0-626b3b09c86b)
@@ -140,3 +146,121 @@ Kiểm tra trạng thái dịch vụ
 check_nginx=$(systemctl is-active nginx)
 echo $check_nginx
 ```
+Tương tự như MySQL, PHP-FPM  
+c. **Node Edit Result Check**  
+Sau khi Node **Check System** thực thi thành công. Output sẽ trả về 1 item kiếu **string** nên ta cần phải tách ra và so sánh kết quả với điều kiện. Như sau:  
+![image](https://github.com/user-attachments/assets/b1a2f103-5acc-41a7-8510-1d4667b7f7fe)
+
+Node này sẽ chia các mảng này ra thành mảng sau đó lấy lần lượt kết quả các phần tử, dùng hàm trim() để xóa các khoảng trắng trước, sau và gán vào bằng một tên như **CPU Status**, **Inode**, **Disk Status** ,... *Lưu ý thứ tự sẽ phải sắp xếp đúng với Node trước nhé nếu không sẽ xãy ra hiện tượng lấy kết quả của CPU so sánh điều kiện của RAM*
+![image](https://github.com/user-attachments/assets/18089d4c-b781-4fd6-8f32-482faccd1ecb)
+
+d. **Node Code**  
+Sau khi đã tách kết quả ta đem đi so sánh bằng đoạn code sau  
+![image](https://github.com/user-attachments/assets/97f982a0-425a-4f1f-a5b0-d0a82fde3625)
+
+```
+const data = $json;
+// 1. Các service cần check "active/inactive"
+const services = [
+  "Nginx Status",
+  "MySQL Status",
+  "PHP-FPM Status"
+];
+
+let msg = '⚠️ *Cảnh báo:*\n';
+let alert = false;
+
+const diskUsage = parseFloat(data["Disk Status"]);
+if (!isNaN(diskUsage)) {
+  if (diskUsage >= 90) { //bạn có thể thay đổi giá trị 90 này theo yêu cầu của mình để so sánh với Disk hiện tại nhé
+    alert = true;
+    msg += `- 🔴 Dung lượng đĩa đang rất cao: ${diskUsage} % \n`;
+  } else if (diskUsage > 80) { //bạn có thể thay đổi giá trị 80 này theo yêu cầu của mình để so sánh với Disk hiện tại nhé
+    alert = true;
+    msg += `- 🟡 Dung lượng đĩa đang khá cao: ${diskUsage} % \n`;
+  }
+}
+
+// Tùy chỉnh thêm CPU
+const cpuUsage = parseFloat(data["CPU Status"]);
+if (!isNaN(cpuUsage) && cpuUsage >= 90) { // có thể thay đổi thành 80 nếu bạn muốn CPU dùng trên 80% sẽ cảnh báo
+  alert = true;
+  msg += `- 🔴 CPU đang quá tải: ${cpuUsage} % \n`;
+}
+
+// 👉 RAM
+const ramUsage = parseFloat(data["RAM"]);
+if (!isNaN(ramUsage) && ramUsage >= 90) { // có thể thay đổi thành 80 nếu bạn muốn RAM dùng trên 80% sẽ cảnh báo
+  alert = true;
+  msg += `- 🔴 RAM đang quá tải: ${ramUsage} % \n`;
+}
+
+// 👉 Inode
+const inodeFree = parseFloat(data["Inode"]);
+if (!isNaN(inodeFree) && inodeFree > 90) {  có thể thay đổi thành 90 nếu bạn muốn Inode dùng trên 90% sẽ cảnh báo
+  alert = true;
+  msg += `- 🔴 Inode còn rất thấp, hiện đang sử dụng: ${inodeFree} % \n`;
+}
+
+// 👉 Load Average
+const loadAvg = parseFloat(data["Average"]);
+if (!isNaN(loadAvg) && loadAvg > 1) { // Kết quả của loadAvg sẽ có 2 giá trị 0 và 1 nên bạn không cần điều chỉnh giá trị này
+  alert = true;
+  msg += `- 🔴 Load Average trong 5 phút vừa qua đang cao: ${loadAvg} \n`;
+}
+
+// Kiểm tra trạng thái dịch vụ
+for (const service of services) {
+  const status = (data[service] || "").toLowerCase().trim();
+  if (status === "inactive") {
+    alert = true;
+    msg += `- 🔴 ${service.trim()} đang *inactive* ❌\n`;
+  }
+}
+
+if (!alert) {
+  return []; // Không có cảnh báo → không gửi tiếp
+}
+
+return [
+  {
+    json: {
+      message: msg
+    }
+  }
+];
+```
+e. **Node Alert Discord**  
+Node này sẽ đẫy thông báo về Discord, ở đây tôi dùng webhook. Bạn có thể xem doc của discord về webhook trên discord nhé: https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks  
+Ở **Message** bạn lấy Output của **Node Code** trước đó
+
+![image](https://github.com/user-attachments/assets/707d0354-26d8-43c4-9e29-334f690b459b)
+
+### Kết quả
+
+![image](https://github.com/user-attachments/assets/a61cf96f-e836-4050-b4e7-ec06b28e0e67)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
