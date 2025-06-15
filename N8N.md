@@ -178,7 +178,7 @@ c. **Node Edit Result Check**
 Sau khi Node **Check System** thực thi thành công. Output sẽ trả về 1 item kiếu **string** nên ta cần phải tách ra và so sánh kết quả với điều kiện. Như sau:  
 ![image](https://github.com/user-attachments/assets/b1a2f103-5acc-41a7-8510-1d4667b7f7fe)
 
-Node này sẽ chia các mảng này ra thành mảng sau đó lấy lần lượt kết quả các phần tử, dùng hàm trim() để xóa các khoảng trắng trước, sau và gán vào bằng một tên như **CPU Status**, **Inode**, **Disk  Status** ,... *Lưu ý thứ tự sẽ phải sắp xếp đúng với Node trước nhé nếu không sẽ xãy ra hiện tượng lấy kết quả của CPU so sánh điều kiện của RAM*  
+Node này sẽ chia các Output ra thành mảng sau đó lấy lần lượt kết quả các phần tử, dùng hàm trim() để xóa các khoảng trắng trước, sau và gán vào bằng một tên như **CPU Status**, **Inode**, **Disk  Status** ,... *Lưu ý thứ tự sẽ phải sắp xếp đúng với Node trước nhé nếu không sẽ xãy ra hiện tượng lấy kết quả của CPU so sánh điều kiện của RAM*  
 ![image](https://github.com/user-attachments/assets/18089d4c-b781-4fd6-8f32-482faccd1ecb)
 
 d. **Node Code**  
