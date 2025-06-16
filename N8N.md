@@ -189,7 +189,8 @@ Sau khi Node **Check System** thực thi thành công. Output sẽ trả về 1 
 
 Node này sẽ chia các Output ra thành mảng sau đó lấy lần lượt kết quả các phần tử, dùng hàm trim() để xóa các khoảng trắng trước, sau và gán vào bằng một tên như **CPU Status**, **Inode**, **Disk  Status** ,... *Lưu ý thứ tự sẽ phải sắp xếp đúng với Node trước nhé nếu không sẽ xãy ra hiện tượng lấy kết quả của CPU so sánh điều kiện của RAM*  
 
-![image](https://github.com/user-attachments/assets/02886dfe-d240-4a4d-afb1-6c6637dc6b28)
+![image](https://github.com/user-attachments/assets/abd97ace-cd12-4df9-947b-9deb30f02162)
+
 
 d. **Node Code**  
 Sau khi đã tách kết quả ta đem đi so sánh bằng đoạn code sau  
