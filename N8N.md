@@ -184,7 +184,7 @@ check_php_fpm_active=$(systemctl is-active php8.1-fpm | awk '{print $1}') && ech
 Tương tự như MySQL, PHP-FPM  
 c. **Node Edit Result Check**  
 Sau khi Node **Check System** thực thi thành công. Output sẽ trả về 1 item kiếu **string** nên ta cần phải tách ra và so sánh kết quả với điều kiện. Như sau:  
-![image](https://github.com/user-attachments/assets/395aaa47-5dbb-40c1-b500-eea3f58e6c4c)
+![image](https://github.com/user-attachments/assets/aaeb1b47-f8b4-4896-873d-7bb74ee57c76)
 
 
 Node này sẽ chia các Output ra thành mảng sau đó lấy lần lượt kết quả các phần tử, dùng hàm trim() để xóa các khoảng trắng trước, sau và gán vào bằng một tên như **CPU Status**, **Inode**, **Disk  Status** ,... *Lưu ý thứ tự sẽ phải sắp xếp đúng với Node trước nhé nếu không sẽ xãy ra hiện tượng lấy kết quả của CPU so sánh điều kiện của RAM*  
