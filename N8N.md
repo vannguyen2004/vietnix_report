@@ -84,14 +84,16 @@ if (( $(echo "$CHECK_ONE > 90" | bc -l) )) && \
 else
     echo 0
 fi
+
 df -ih | awk '$NF=="/"{printf "%.2f\n", $5}'
+
 df -h | awk '$NF=="/"{printf "%.2f\n", $5}'
 free | awk '/Mem:/ {printf "%.2f\n", (1 - $7/$2) * 100}'
 
 # Lấy số core CPU
 cores=$(nproc)
-# Lấy load average tỏng 5 phút
-load1=$(awk '{print $2}' /proc/loadavg)
+# Lấy load average 5 phút
+load1=$(top -bn1 | awk '/load average/ {print $13}')
 # So sánh
 threshold=$(echo "$cores * 1.0" | bc)  # cho phép 100% CPU load
 # In thông báo
@@ -100,12 +102,12 @@ if (( $(echo "$load1 > $threshold" | bc -l) )); then
 else
     echo 0
 fi
-check_nginx=$(systemctl is-active nginx | awk "{print $1}")
-echo $check_nginx
-check_mysql=$(systemctl is-active mysql | awk "{print $1}")
-echo $check_mysql
-check_php_fpm=$(systemctl is-active php8.1-fpm | awk "{print $1}")
-echo $check_php_fpm
+check_nginx_enable=$(systemctl is-enabled nginx | awk "{print $1}")&& echo $check_nginx_enable
+check_nginx_active=$(systemctl is-active nginx | awk "{print $1}")&& echo $check_nginx_active
+check_mysql_enable=$(systemctl is-enabled mysql | awk "{print $1}") && echo $check_mysql_enable
+check_mysql_active=$(systemctl is-active mysql | awk "{print $1}")&& echo $check_mysql_active
+check_php_fpm_enable=$(systemctl is-enabled php8.1-fpm | awk "{print $1}") && echo $check_php_fpm_enable
+check_php_fpm_active=$(systemctl is-active php8.1-fpm | awk "{print $1}") && echo $check_php_fpm_active
 ```
 **Kiểm tra CPU**
 ```
