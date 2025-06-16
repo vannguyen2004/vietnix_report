@@ -172,7 +172,8 @@ threshold=$(echo "$cores * 1.0" | bc)
 - Nếu load1 > số core, nghĩa là CPU đang bị quá tải  
 **Kiểm tra trạng thái dịch vụ**
 ```
-check_nginx=$(systemctl is-active nginx)
+check_nginx_enable=$(systemctl is-enabled nginx | awk "{print $1}")&& echo $check_nginx_enable
+check_nginx_active=$(systemctl is-active nginx | awk "{print $1}")&& echo $check_nginx_active
 echo $check_nginx
 ```
 Tương tự như MySQL, PHP-FPM  
@@ -189,62 +190,75 @@ Sau khi đã tách kết quả ta đem đi so sánh bằng đoạn code sau
 
 ```
 const data = $json;
-// 1. Các service cần check "active/inactive"
-const services = [
-  "Nginx Status",
-  "MySQL Status",
-  "PHP-FPM Status"
-];
 
+// 1. Các service cần check "active/inactive"
 let msg = '⚠️ *Cảnh báo:*\n';
 let alert = false;
 
+// 🔧 Tùy chỉnh riêng từng loại tài nguyên
 const diskUsage = parseFloat(data["Disk Status"]);
 if (!isNaN(diskUsage)) {
-  if (diskUsage >= 90) { //bạn có thể thay đổi giá trị 90 này theo yêu cầu của mình để so sánh với Disk hiện tại nhé
+  if (diskUsage >= 90) {
     alert = true;
     msg += `- 🔴 Dung lượng đĩa đang rất cao: ${diskUsage} % \n`;
-  } else if (diskUsage > 80) { //bạn có thể thay đổi giá trị 80 này theo yêu cầu của mình để so sánh với Disk hiện tại nhé
+  } else if (diskUsage > 80) {
     alert = true;
     msg += `- 🟡 Dung lượng đĩa đang khá cao: ${diskUsage} % \n`;
   }
 }
 
-// Tùy chỉnh thêm CPU
+// 👉 Tùy chỉnh thêm nếu muốn (ví dụ CPU)
 const cpuUsage = parseFloat(data["CPU Status"]);
-if (!isNaN(cpuUsage) && cpuUsage >= 90) { // có thể thay đổi thành 80 nếu bạn muốn CPU dùng trên 80% sẽ cảnh báo
+if (!isNaN(cpuUsage) && cpuUsage >= 90) {
   alert = true;
   msg += `- 🔴 CPU đang quá tải: ${cpuUsage} % \n`;
 }
 
 // 👉 RAM
 const ramUsage = parseFloat(data["RAM"]);
-if (!isNaN(ramUsage) && ramUsage >= 90) { // có thể thay đổi thành 80 nếu bạn muốn RAM dùng trên 80% sẽ cảnh báo
+if (!isNaN(ramUsage) && ramUsage >= 90) {
   alert = true;
   msg += `- 🔴 RAM đang quá tải: ${ramUsage} % \n`;
 }
 
 // 👉 Inode
 const inodeFree = parseFloat(data["Inode"]);
-if (!isNaN(inodeFree) && inodeFree > 90) {  có thể thay đổi thành 90 nếu bạn muốn Inode dùng trên 90% sẽ cảnh báo
+if (!isNaN(inodeFree) && inodeFree > 2) {
   alert = true;
   msg += `- 🔴 Inode còn rất thấp, hiện đang sử dụng: ${inodeFree} % \n`;
 }
 
 // 👉 Load Average
 const loadAvg = parseFloat(data["Average"]);
-if (!isNaN(loadAvg) && loadAvg > 1) { // Kết quả của loadAvg sẽ có 2 giá trị 0 và 1 nên bạn không cần điều chỉnh giá trị này
+if (!isNaN(loadAvg) && loadAvg > 1) {
   alert = true;
   msg += `- 🔴 Load Average trong 5 phút vừa qua đang cao: ${loadAvg} \n`;
 }
-
+/**const services = [
+  "Nginx Enable",
+  "Nginx Active",
+  "MySQL Enable",
+  "MySQL Active",
+  "PHP-FPM Enable",
+  "PHP-FPM Active"
+];**/
+const services = ["Nginx", "MySQL","PHP-FPM"]
 // Kiểm tra trạng thái dịch vụ
 for (const service of services) {
-  const status = (data[service] || "").toLowerCase().trim();
-  if (status === "inactive") {
-    alert = true;
-    msg += `- 🔴 ${service.trim()} đang *inactive* ❌\n`;
-  }
+  const isEnabled = (data[`${service} Enable`] || "").toLowerCase().trim();
+  const isActive = (data[`${service} Active`] || "").toLowerCase().trim();
+
+  alert = true; // luôn bật vì bạn muốn báo trong mọi trường hợp
+
+  const enableText = (isEnabled === "enabled")
+    ? "*đã được bật khi reboot*"
+    : "*chưa tự động bật khi reboot*";
+
+  const activeText = (isActive === "active")
+    ? "và hiện tại đang *active* ✅"
+    : "và hiện tại đang *inactive* ❌";
+
+  msg += `-  ${service.trim()} ${enableText} ${activeText}\n`;
 }
 
 if (!alert) {
