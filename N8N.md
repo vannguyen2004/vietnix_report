@@ -90,7 +90,7 @@ free | awk '/Mem:/ {printf "%.2f\n", (1 - $7/$2) * 100}'
 
 # Lấy số core CPU
 cores=$(nproc)
-# Lấy load average 1 phút
+# Lấy load average tỏng 5 phút
 load1=$(awk '{print $2}' /proc/loadavg)
 # So sánh
 threshold=$(echo "$cores * 1.0" | bc)  # cho phép 100% CPU load
