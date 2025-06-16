@@ -102,12 +102,12 @@ if (( $(echo "$load1 > $threshold" | bc -l) )); then
 else
     echo 0
 fi
-check_nginx_enable=$(systemctl is-enabled nginx | awk "{print $1}")&& echo $check_nginx_enable
-check_nginx_active=$(systemctl is-active nginx | awk "{print $1}")&& echo $check_nginx_active
-check_mysql_enable=$(systemctl is-enabled mysql | awk "{print $1}") && echo $check_mysql_enable
-check_mysql_active=$(systemctl is-active mysql | awk "{print $1}")&& echo $check_mysql_active
-check_php_fpm_enable=$(systemctl is-enabled php8.1-fpm | awk "{print $1}") && echo $check_php_fpm_enable
-check_php_fpm_active=$(systemctl is-active php8.1-fpm | awk "{print $1}") && echo $check_php_fpm_active
+nginx_service=$(systemctl list-unit-files | awk '/nginx/ {print $1; found=1} END {if (!found) print "not-found"}')&& echo $nginx_service
+check_nginx_active=$(systemctl is-active nginx | awk '{print $1}')&& echo $check_nginx_active
+mysql_service=$(systemctl list-unit-files | grep mysql |  awk '/mysql/ {print $1; found=1} END {if (!found) print "not-found"}')&& echo $mysql_service
+check_mysql_active=$(systemctl is-active mysql | awk '{print $1}')&& echo $check_mysql_active
+php81_fpm_service=$(systemctl list-unit-files| awk '/php8.1-fpm/ {print $1; found=1} END {if (!found) print "not-found"}') && echo $php81_fpm_service
+check_php_fpm_active=$(systemctl is-active php8.1-fpm | awk '{print $1}') && echo $check_php_fpm_active
 ```
 **Kiểm tra CPU**
 ```
@@ -171,10 +171,15 @@ threshold=$(echo "$cores * 1.0" | bc)
 - load1: lấy giá trị load trung bình trong 1 phút
 - Nếu load1 > số core, nghĩa là CPU đang bị quá tải  
 **Kiểm tra trạng thái dịch vụ**
+  
+Nếu dịch vụ đó đã được cài đặt thì sẽ lấy giá trị là tên dịch vụ đó nếu chưa thì sẽ lấy giá trị là not found và sau đó kiểm tra dịch vụ đó có active hay không
 ```
-check_nginx_enable=$(systemctl is-enabled nginx | awk "{print $1}")&& echo $check_nginx_enable
-check_nginx_active=$(systemctl is-active nginx | awk "{print $1}")&& echo $check_nginx_active
-echo $check_nginx
+nginx_service=$(systemctl list-unit-files | awk '/nginx/ {print $1; found=1} END {if (!found) print "not-found"}')&& echo $nginx_service
+check_nginx_active=$(systemctl is-active nginx | awk '{print $1}')&& echo $check_nginx_active
+mysql_service=$(systemctl list-unit-files | grep mysql |  awk '/mysql/ {print $1; found=1} END {if (!found) print "not-found"}')&& echo $mysql_service
+check_mysql_active=$(systemctl is-active mysql | awk '{print $1}')&& echo $check_mysql_active
+php81_fpm_service=$(systemctl list-unit-files| awk '/php8.1-fpm/ {print $1; found=1} END {if (!found) print "not-found"}') && echo $php81_fpm_service
+check_php_fpm_active=$(systemctl is-active php8.1-fpm | awk '{print $1}') && echo $check_php_fpm_active
 ```
 Tương tự như MySQL, PHP-FPM  
 c. **Node Edit Result Check**  
