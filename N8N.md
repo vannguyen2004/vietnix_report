@@ -164,7 +164,7 @@ free | awk '/Mem:/ {printf "%.2f\n", (1 - $7/$2) * 100}'
 **Kiểm tra Load Average**
 ```
 cores=$(nproc)
-load1=$(awk '{print $2}' /proc/loadavg)
+load1=$( top -bn1 | grep "load average" | awk -F'load average: ' '{print $2}' | cut -d',' -f2)
 threshold=$(echo "$cores * 1.0" | bc)
 ```
 - nproc: lấy số core CPU
@@ -184,10 +184,12 @@ check_php_fpm_active=$(systemctl is-active php8.1-fpm | awk '{print $1}') && ech
 Tương tự như MySQL, PHP-FPM  
 c. **Node Edit Result Check**  
 Sau khi Node **Check System** thực thi thành công. Output sẽ trả về 1 item kiếu **string** nên ta cần phải tách ra và so sánh kết quả với điều kiện. Như sau:  
-![image](https://github.com/user-attachments/assets/b1a2f103-5acc-41a7-8510-1d4667b7f7fe)
+![image](https://github.com/user-attachments/assets/395aaa47-5dbb-40c1-b500-eea3f58e6c4c)
+
 
 Node này sẽ chia các Output ra thành mảng sau đó lấy lần lượt kết quả các phần tử, dùng hàm trim() để xóa các khoảng trắng trước, sau và gán vào bằng một tên như **CPU Status**, **Inode**, **Disk  Status** ,... *Lưu ý thứ tự sẽ phải sắp xếp đúng với Node trước nhé nếu không sẽ xãy ra hiện tượng lấy kết quả của CPU so sánh điều kiện của RAM*  
-![image](https://github.com/user-attachments/assets/18089d4c-b781-4fd6-8f32-482faccd1ecb)
+
+![image](https://github.com/user-attachments/assets/02886dfe-d240-4a4d-afb1-6c6637dc6b28)
 
 d. **Node Code**  
 Sau khi đã tách kết quả ta đem đi so sánh bằng đoạn code sau  
