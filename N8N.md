@@ -38,18 +38,29 @@ Khi phát hiện bất kỳ chỉ số nào vượt quá ngưỡng cảnh báo, 
 a. **Node Trigger Check System**  
 Ở node này sẽ là thời gian mà bạn chạy workflow giám xác hệ thống. Có thể chạy 2 phút một lần, 5 phút một lần, hay 10 phút một lần,...Tuy nhiên tôi khuyên bạn không nên để thời gian quá xa vì hệ thống có thể gặp vấn đề mà bạn không thể phát hiện kịp thời
 ![image](https://github.com/user-attachments/assets/1bb569e8-766b-4431-909f-ac02c706b8c9)
+b. **VPS Status**  
+Node này dùng để kiểm tra VPS còn sống hay không và in ra kết quả online hay offline
+- Ping 2 gói tin với thời gian chờ phản hồi là 3s
 
-b. **Check VPS**  
+![image](https://github.com/user-attachments/assets/ee095a45-a8fa-4d64-ad2a-de279705c30a)
+
+c. **Check VPS Active**
+Nếu output node trước là online tiến hành check các thông số hệ thống,người lại ghi nhận thông tin gửi đến discord
+
+![image](https://github.com/user-attachments/assets/1a20b46d-f7e2-4a3d-b352-c4b8f3eafa70)
+
+
+d. **Check VPS**  
 Node này dùng để kiểm tra tình trạng up/down của VPS bằng cách ping đến máy chủ sau đó nếu phig thành công sẽ in ra **online**, ngược lại sẽ là **offline**  
 ![image](https://github.com/user-attachments/assets/711b37d3-7e42-4469-8412-ca86f64e516e)  
 
-c. **Node Check VPS Active**   
+e. **Node Check VPS Active**   
 Nếu như VPS vẫn có thể phản hồi ở node trước đó (nghĩa là VPS vẫn còn đang hoạt động) ta sẽ chuyển Output sang node Check System để thực hiện. Trong trường hợp VPS không phản hồi ta chuyển đến node code để chuẩn bị in ra kết quả VPS không hoạt động
 
 ![image](https://github.com/user-attachments/assets/286cfbd4-edb0-4a35-802a-7ca4ae102b88)
 
 
-b. **Check System**  
+f. **Check System**  
 Node này dùng để gửi các Command đến máy chủ được giám sát để lấy thông tin CPU, RAM, DISK, Inode, Load Average và các dịch vụ như Nginx MySQL, PHP-FPM    
 Nhưng trước tiên bạn phải thêm Thông tin xác thực vào nhé
 
@@ -216,8 +227,14 @@ const data = $json;
 // 1. Các service cần check "active/inactive"
 let msg = '⚠️ *Cảnh báo:*\n';
 let alert = false;
-
 // 🔧 Tùy chỉnh riêng từng loại tài nguyên
+const status = data["Active VPS"];
+if (status && status.toLowerCase() === "offline") {
+  const msg = `🔴 VPS không hoạt động, cần kiểm tra ngay\n`;
+  return [{
+    json: { message: msg }
+  }];
+}
 const diskUsage = parseFloat(data["Disk Status"]);
 if (!isNaN(diskUsage)) {
   if (diskUsage >= 90) {
@@ -267,20 +284,16 @@ if (!isNaN(loadAvg) && loadAvg > 1) {
 const services = ["Nginx", "MySQL","PHP-FPM"]
 // Kiểm tra trạng thái dịch vụ
 for (const service of services) {
-  const isEnabled = (data[`${service} Enable`] || "").toLowerCase().trim();
+  const isInstalled = (data[`${service} Installed`] || "").toLowerCase().trim();
+  if (isInstalled === "not-found") {
+    continue;
+  }
   const isActive = (data[`${service} Active`] || "").toLowerCase().trim();
-
-  alert = true; // luôn bật vì bạn muốn báo trong mọi trường hợp
-
-  const enableText = (isEnabled === "enabled")
-    ? "*đã được bật khi reboot*"
-    : "*chưa tự động bật khi reboot*";
-
+  alert = true;
   const activeText = (isActive === "active")
-    ? "và hiện tại đang *active* ✅"
-    : "và hiện tại đang *inactive* ❌";
-
-  msg += `-  ${service.trim()} ${enableText} ${activeText}\n`;
+    ? "*hiện tại đang active* ✅"
+    : "*hiện tại đang inactive* ❌";
+  msg += `- 🔧 ${service.trim()}  ${activeText}\n`;
 }
 
 if (!alert) {
