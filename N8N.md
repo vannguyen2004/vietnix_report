@@ -38,29 +38,20 @@ Khi phát hiện bất kỳ chỉ số nào vượt quá ngưỡng cảnh báo, 
 a. **Node Trigger Check System**  
 Ở node này sẽ là thời gian mà bạn chạy workflow giám xác hệ thống. Có thể chạy 2 phút một lần, 5 phút một lần, hay 10 phút một lần,...Tuy nhiên tôi khuyên bạn không nên để thời gian quá xa vì hệ thống có thể gặp vấn đề mà bạn không thể phát hiện kịp thời
 ![image](https://github.com/user-attachments/assets/1bb569e8-766b-4431-909f-ac02c706b8c9)
-b. **VPS Status**  
-Node này dùng để kiểm tra VPS còn sống hay không và in ra kết quả online hay offline
-- Ping 2 gói tin với thời gian chờ phản hồi là 3s
-
-![image](https://github.com/user-attachments/assets/ee095a45-a8fa-4d64-ad2a-de279705c30a)
-
-c. **Check VPS Active**
-Nếu output node trước là online tiến hành check các thông số hệ thống,người lại ghi nhận thông tin gửi đến discord
-
-![image](https://github.com/user-attachments/assets/1a20b46d-f7e2-4a3d-b352-c4b8f3eafa70)
 
 
-d. **Check VPS**  
+
+b. **Check VPS**  
 Node này dùng để kiểm tra tình trạng up/down của VPS bằng cách ping đến máy chủ sau đó nếu phig thành công sẽ in ra **online**, ngược lại sẽ là **offline**  
 ![image](https://github.com/user-attachments/assets/711b37d3-7e42-4469-8412-ca86f64e516e)  
 
-e. **Node Check VPS Active**   
+c. **Node Check VPS Active**   
 Nếu như VPS vẫn có thể phản hồi ở node trước đó (nghĩa là VPS vẫn còn đang hoạt động) ta sẽ chuyển Output sang node Check System để thực hiện. Trong trường hợp VPS không phản hồi ta chuyển đến node code để chuẩn bị in ra kết quả VPS không hoạt động
 
 ![image](https://github.com/user-attachments/assets/286cfbd4-edb0-4a35-802a-7ca4ae102b88)
 
 
-f. **Check System**  
+d. **Check System**  
 Node này dùng để gửi các Command đến máy chủ được giám sát để lấy thông tin CPU, RAM, DISK, Inode, Load Average và các dịch vụ như Nginx MySQL, PHP-FPM    
 Nhưng trước tiên bạn phải thêm Thông tin xác thực vào nhé
 
@@ -207,7 +198,7 @@ php81_fpm_service=$(systemctl list-unit-files| awk '/php8.1-fpm/ {print $1; foun
 check_php_fpm_active=$(systemctl is-active php8.1-fpm | awk '{print $1}') && echo $check_php_fpm_active
 ```
 Tương tự như MySQL, PHP-FPM  
-c. **Node Edit Result Check**  
+e. **Node Edit Result Check**  
 Sau khi Node **Check System** thực thi thành công. Output sẽ trả về 1 item kiếu **string** nên ta cần phải tách ra và so sánh kết quả với điều kiện. Như sau:  
 ![image](https://github.com/user-attachments/assets/aaeb1b47-f8b4-4896-873d-7bb74ee57c76)
 
@@ -217,7 +208,7 @@ Node này sẽ chia các Output ra thành mảng sau đó lấy lần lượt k�
 ![image](https://github.com/user-attachments/assets/abd97ace-cd12-4df9-947b-9deb30f02162)
 
 
-d. **Node Code**  
+f. **Node Code**  
 Sau khi đã tách kết quả ta đem đi so sánh bằng đoạn code sau  
 ![image](https://github.com/user-attachments/assets/97f982a0-425a-4f1f-a5b0-d0a82fde3625)
 
@@ -308,7 +299,7 @@ return [
   }
 ];
 ```
-e. **Node Alert Discord**  
+g. **Node Alert Discord**  
 Node này sẽ đẫy thông báo về Discord, ở đây tôi dùng webhook. Bạn có thể xem doc của discord về webhook trên discord nhé: https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks  
 Ở **Message** bạn lấy Output của **Node Code** trước đó
 
