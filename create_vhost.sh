@@ -153,7 +153,8 @@ main(){
 				break 
 				;;
 			*)
-				read -p "${RED}❌ PHIÊN BẢN PHP KHÔNG HỢP LỆ. ẤN ENTER ĐỂ THỬ LẠI${RESET}" 
+				echo -e "${RED}❌ PHIÊN BẢN PHP KHÔNG HỢP LỆ. ẤN ENTER ĐỂ THỬ LẠI${RESET}" 
+    				read
 				;;
 		esac 
 	done 
