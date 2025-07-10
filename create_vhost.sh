@@ -141,7 +141,7 @@ main(){
 				create_config "${username}" "${domain}" "${php_version}"
 				create_directory "${username}" "${domain}"
 				create_acc_db "${username}"
-				apache2ctl configtest > /dev/null 
+				apache2ctl configtest > /dev/null 2>&1
 				if [[ $? -ne 0 ]]; then
 					echo -e "${RED}❌ ĐÃ XẢY RA LỖI CẤU HÌNH. VUI LÒNG KIỂM TRA LẠI.${RESET}"
 					exit
