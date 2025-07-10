@@ -74,7 +74,7 @@ setup_wordpress() {
         mysql -e "CREATE DATABASE ${user}_${db_name};" > /dev/null
 
         if [[ $? -eq 0 ]]; then
-            mysql -e "GRANT ALL ON \`${user}_${db_name}\`.* TO '${user}'@'%';"
+            mysql -e "GRANT ALL ON \`${user}_${db_name}\`.* TO '${user}_'@'%';"
             mysql -e "FLUSH PRIVILEGES;"
             echo -e "${GREEN}✅ Đã tạo database và phân quyền cho user ${user}${RESET}"
         else
