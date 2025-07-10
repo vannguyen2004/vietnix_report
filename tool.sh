@@ -68,7 +68,9 @@ setup_wordpress() {
         echo -e "${BLUE}📦 Tải source WordPress về...${RESET}"
         git clone https://github.com/WordPress/WordPress.git
         mv ./WordPress/* "$doc_root"
+        chown -R $user:$user $doc_root
         rm -rf ./WordPress
+        
 
         read -p "🔧 Nhập tên database cần tạo: " db_name
         mysql -e "CREATE DATABASE ${user}_${db_name};" > /dev/null
