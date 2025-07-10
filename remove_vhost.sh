@@ -9,29 +9,23 @@ RESET='\e[0m'
 
 delete_file_config(){
     local domain=$1
-    local limit=1
 
     echo -e "${YELLOW}🧹 Đang gỡ kích hoạt và xoá cấu hình ${domain}...${RESET}"
     a2dissite "${domain}.conf" > /dev/null
 
     sudo find /etc/apache2/sites-available -type f -name "${domain}.conf" -exec rm {} \; > /dev/null 2>&1
     sudo find /var/log/apache2/ -type d -name "${domain}" -exec rm -rf {} \; > /dev/null 2>&1
-
+    if ./check_domain_exist.sh "${domain}-le-ssl"; then
+        a2dissite "${domain}-le-ssl.conf" > /dev/null
+        rm -f /etc/apache2/sites-available/${domain}-le-ssl.conf 
+    fi
     apache2ctl configtest
-    if [[ $? -ne 0 ]]; then
+     if [[ $? -ne 0 ]]; then
         echo -e "${RED}❌ Đã xảy ra lỗi! Vui lòng kiểm tra cấu hình Apache.${RESET}"
         exit 1
-    fi
+     fi
+     systemctl reload apache2.service > /dev/null
 
-    if [[ $limit -eq 2 ]]; then
-        return
-    fi
-
-    if ./check_domain_exist.sh "${domain}-le-ssl"; then
-        limit=2
-        delete_file_config "${domain}-le-ssl"
-        return
-    fi
 }
 
 main(){
