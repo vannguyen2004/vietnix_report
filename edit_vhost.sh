@@ -19,25 +19,17 @@ change_php_version(){
         echo -e "${RED}❌ Đã xảy ra lỗi khi thay đổi PHP version. Vui lòng kiểm tra lại.${RESET}"
         exit
     fi
-
-    apache2ctl configtest 
+    apache2ctl configtest > /dev/null 2>&1
     if [[ $? -ne 0 ]]; then
-        echo -e "${RED}❌ Lỗi cấu hình Apache sau khi thay đổi PHP. Vui lòng kiểm tra file config.${RESET}"
-        exit
+            echo -e "${RED}❌ Lỗi cấu hình Apache sau khi thay đổi PHP. Vui lòng kiểm tra file config.${RESET}"
+            exit
     fi
-
-    a2ensite "$domain.conf"
-    systemctl reload apache2.service
-
-    if [[ $limit -eq 1 ]]; then
-        exit
-    fi
-
-    if [[ -f "/etc/apache2/sites-available/${domain}-le-ssl.conf" ]]; then
-        limit=1
+    a2ensite "$domain" > /dev/null 2>&1
+    if [[ -f "/etc/apache2/sites-available/${domain}-le-ssl.conf" ]] || [[ ! $limit -ne 2 ]] ; then
+        limit=2
         change_php_version "${domain}-le-ssl"
-        exit
     fi
+     systemctl reload apache2.service
 }
 
 change_domain(){
