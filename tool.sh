@@ -50,7 +50,7 @@ backup() {
         chown $username:$username $backup_dir
     fi
 
-    databases=$(mysql -e "SHOW DATABASES;" | grep "^$username_")
+    databases=$(mysql -e "SHOW DATABASES;" | grep "^${user_db}")
     for database in $databases; do
         mysqldump -u root "$database" > "${backup_dir}/${database}_$backup_name.sql"
     done
