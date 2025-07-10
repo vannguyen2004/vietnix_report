@@ -21,10 +21,9 @@ vhost_info() {
         exit
     fi
 
-    if [[ -f "/etc/apache2/sites-avaliable/${domain}-le-ssl.config" ]]; then
+    if [[ -f "/etc/apache2/sites-available/${domain}-le-ssl.config" ]]; then
         limit=2
-        vhost_info "${domain}-le-ssl.conf"
-        exit
+        vhost_info "${domain}-le-ssl"
     fi
 }
 
