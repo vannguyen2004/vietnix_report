@@ -79,6 +79,7 @@ setup_wordpress() {
             mysql -e "GRANT ALL ON \`${user}_${db_name}\`.* TO '${user}_'@'%';"
             mysql -e "FLUSH PRIVILEGES;"
             echo -e "${GREEN}✅ Đã tạo database và phân quyền cho user ${user}${RESET}"
+            echo -e "Database name của bạn là: ${user}_${db_name}"
         else
             echo -e "${RED}❌ Database đã tồn tại hoặc lỗi khi tạo${RESET}"
         fi
