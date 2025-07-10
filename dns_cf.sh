@@ -107,9 +107,9 @@ main() {
     echo " NHẬP THÔNG TIN KẾT NỐI CLOUDFLARE"
     echo -e "===============================${RESET}"
 
-    read -p "📧 Email Cloudflare     : " CLOUDFLARE_EMAIL
-    read -p "🔑 API Key              : " CLOUDFLARE_API_KEY
-    read -p "🌐 Zone ID              : " ZONE_ID
+    read -s -p "📧 Email Cloudflare     : " CLOUDFLARE_EMAIL
+    read -s -p "🔑 API Key              : " CLOUDFLARE_API_KEY
+    read -s -p "🌐 Zone ID              : " ZONE_ID
 
     echo -e "${BLUE}🔄 Đang kiểm tra kết nối tới Cloudflare...${RESET}"
     if ! check_connection "$ZONE_ID" "$CLOUDFLARE_EMAIL" "$CLOUDFLARE_API_KEY"; then
