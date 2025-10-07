@@ -1,5 +1,5 @@
 # Thực hiện allow port, allow ip trên window fw
-1. Allow port
+1. Allow port Nguyen
 Ấn New Rule  
 ![image](https://github.com/user-attachments/assets/38ef13e9-dc23-4547-8199-280c5aba72fc)  
 
